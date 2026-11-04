@@ -1,0 +1,669 @@
+# =============================================================================
+# 01_eda_functions.R
+# Coursework: STW7089CEM Introduction to Statistical Methods for Data Science
+# Task 1: Preliminary Data Analysis
+#
+# Modules included:
+#   1. Time series profiling and temporal dynamics
+#   2. Temporal dependence and stationarity diagnostics (ACF, PACF, Ljung-Box)
+#   3. Distributional moments and nonparametric descriptive statistics
+#   4. Distribution density plots and boxplot visualizations
+#   5. Bivariate dependency analysis (Pearson, Spearman, Scatter Matrix, VIF)
+#   6. Baseline multiple linear regression and nonlinear justification
+# =============================================================================
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(tidyr)
+  library(dplyr)
+  library(patchwork)
+  library(gridExtra)
+})
+
+# Display labels used in every Task 1 figure (order defines panel order)
+signal_labels <- c(
+  x1 = "x1: CPU utilization",
+  x2 = "x2: Memory usage",
+  x3 = "x3: Disk I/O",
+  x4 = "x4: Network traffic",
+  y  = "y: Power consumption"
+)
+
+#' Reshape the wide data frame to long format for faceted plotting.
+to_long <- function(df, vars = names(signal_labels)) {
+  long <- tidyr::pivot_longer(df[, c("time", vars)], cols = dplyr::all_of(vars),
+                              names_to = "signal", values_to = "value")
+  long$signal <- factor(long$signal, levels = vars,
+                        labels = signal_labels[vars])
+  long
+}
+
+# -----------------------------------------------------------------------------
+# 1. Time Series Profiling Functions
+# -----------------------------------------------------------------------------
+
+#' Centred moving median and 10th / 90th percentiles over k samples.
+#' Quantiles (not mean +/- SD) are used because x4 and y are strongly
+#' right-skewed: a symmetric SD band would extend below zero, which is
+#' physically impossible for network traffic and power. Edges are NA.
+rolling_quantiles <- function(x, k, probs = c(0.10, 0.50, 0.90)) {
+  n    <- length(x)
+  half <- floor(k / 2)
+  win  <- stats::embed(x, k)
+  q    <- t(apply(win, 1, stats::quantile, probs = probs, names = FALSE))
+  out  <- matrix(NA_real_, nrow = n, ncol = length(probs))
+  out[(k - half):(n - half), ] <- q
+  setNames(as.data.frame(out), c("q_lo", "q_mid", "q_hi"))
+}
+
+#' Figure: Full-length time series with a moving median and a moving
+#' 10th-90th percentile band.
+plot_timeseries <- function(df, window = 100, fs = 10) {
+  vars <- names(signal_labels)
+  rolled <- do.call(rbind, lapply(vars, function(v) {
+    rq <- rolling_quantiles(df[[v]], window)
+    data.frame(time = df$time, signal = v, value = df[[v]], rq)
+  }))
+  rolled$signal <- factor(rolled$signal, levels = vars,
+                          labels = signal_labels[vars])
+
+  win_label  <- sprintf("Moving median (%g-s window)", window / fs)
+  band_label <- "Moving 10th / 90th percentiles"
+
+  ggplot(rolled, aes(x = time)) +
+    geom_line(aes(y = value, colour = "Raw signal"), linewidth = 0.12) +
+    geom_line(aes(y = q_hi, colour = band_label),
+              linewidth = 0.35, linetype = "22", na.rm = TRUE) +
+    geom_line(aes(y = q_lo, colour = band_label),
+              linewidth = 0.35, linetype = "22", na.rm = TRUE) +
+    geom_line(aes(y = q_mid, colour = win_label),
+              linewidth = 0.55, na.rm = TRUE) +
+    facet_wrap(~ signal, ncol = 1, scales = "free_y") +
+    scale_colour_manual(
+      values = setNames(c(apa_colours$raw, apa_colours$main,
+                          apa_colours$bound),
+                        c("Raw signal", win_label, band_label)),
+      breaks = c("Raw signal", win_label, band_label)
+    ) +
+    scale_x_continuous(expand = expansion(mult = 0.005),
+                       breaks = seq(0, 1000, by = 100)) +
+    labs(x = "Time (seconds)", y = "Signal Value") +
+    guides(colour = guide_legend(override.aes = list(linewidth = 0.8))) +
+    theme_apa7()
+}
+
+#' Figure: Zoomed view of the first `t_max` seconds at sample resolution.
+plot_timeseries_zoom <- function(df, t_max = 20) {
+  long <- to_long(df[df$time <= t_max, ])
+  ggplot(long, aes(x = time, y = value)) +
+    geom_line(colour = apa_colours$secondary, linewidth = 0.3) +
+    geom_point(colour = apa_colours$main, size = 0.35) +
+    facet_wrap(~ signal, ncol = 1, scales = "free_y") +
+    scale_x_continuous(expand = expansion(mult = 0.01),
+                       breaks = seq(0, t_max, by = 2)) +
+    labs(x = "Time (seconds)", y = "Signal Value") +
+    theme_apa7()
+}
+
+# -----------------------------------------------------------------------------
+# 2. Temporal Autocorrelation & Stationarity Diagnostics
+# -----------------------------------------------------------------------------
+
+#' ACF and PACF values for every signal, in long format.
+acf_pacf_table <- function(df, lag_max = 40) {
+  vars <- names(signal_labels)
+  do.call(rbind, lapply(vars, function(v) {
+    a <- stats::acf(df[[v]], lag.max = lag_max, plot = FALSE)
+    p <- stats::pacf(df[[v]], lag.max = lag_max, plot = FALSE)
+    rbind(
+      data.frame(signal = v, type = "ACF",
+                 lag = as.numeric(a$lag)[-1], value = as.numeric(a$acf)[-1]),
+      data.frame(signal = v, type = "PACF",
+                 lag = as.numeric(p$lag), value = as.numeric(p$acf))
+    )
+  }))
+}
+
+#' Figure: Correlogram grid with the large-sample 95% white-noise bounds.
+plot_acf_pacf <- function(acf_df, n, fs = 10) {
+  bound <- stats::qnorm(0.975) / sqrt(n)
+  acf_df$exceeds <- abs(acf_df$value) > bound
+  acf_df$signal  <- factor(acf_df$signal, levels = names(signal_labels),
+                           labels = signal_labels)
+  y_lim <- max(0.05, 1.15 * max(abs(acf_df$value)))
+
+  ggplot(acf_df, aes(x = lag, y = value)) +
+    annotate("rect", xmin = -Inf, xmax = Inf, ymin = -bound, ymax = bound,
+             fill = "grey92") +
+    geom_hline(yintercept = 0, colour = "black", linewidth = 0.3) +
+    geom_hline(yintercept = c(-bound, bound), colour = apa_colours$bound,
+               linetype = "22", linewidth = 0.4) +
+    geom_segment(aes(xend = lag, yend = 0, colour = exceeds),
+                 linewidth = 0.5) +
+    scale_colour_manual(values = c(`FALSE` = apa_colours$main,
+                                   `TRUE` = apa_colours$highlight),
+                        labels = c(`FALSE` = "Within 95% bounds",
+                                   `TRUE` = "Outside 95% bounds"),
+                        drop = FALSE) +
+    facet_grid(signal ~ type, switch = "y") +
+    scale_x_continuous(
+      name = sprintf("Lag (samples; 1 lag = %g s)", 1 / fs),
+      breaks = seq(0, max(acf_df$lag), by = 10)
+    ) +
+    scale_y_continuous(name = "Autocorrelation Coefficient",
+                       limits = c(-y_lim, y_lim)) +
+    theme_apa7(base_size = 9) +
+    theme(strip.placement = "outside",
+          strip.text.y.left = element_text(angle = 0, hjust = 1,
+                                           face = "bold"))
+}
+
+#' Formal tests of temporal independence and stationarity for each signal.
+temporal_tests <- function(df, n_blocks = 10, lag_max = 40) {
+  vars  <- names(signal_labels)
+  n     <- nrow(df)
+  bound <- stats::qnorm(0.975) / sqrt(n)
+  block <- factor(rep(seq_len(n_blocks), each = ceiling(n / n_blocks))[seq_len(n)])
+
+  rows <- lapply(vars, function(v) {
+    x   <- df[[v]]
+    acf_vals <- as.numeric(stats::acf(x, lag.max = lag_max,
+                                      plot = FALSE)$acf)[-1]
+    lb10 <- stats::Box.test(x, lag = 10, type = "Ljung-Box")
+    lb20 <- stats::Box.test(x, lag = 20, type = "Ljung-Box")
+    tr   <- summary(stats::lm(x ~ df$time))$coefficients[2, ]
+    sp   <- stats::cor.test(x, df$time, method = "spearman", exact = FALSE)
+    kw   <- stats::kruskal.test(x, block)
+    fk   <- stats::fligner.test(x, block)
+
+    data.frame(
+      signal           = v,
+      label            = signal_labels[[v]],
+      lag1_acf         = acf_vals[1],
+      max_abs_acf      = max(abs(acf_vals)),
+      max_abs_acf_lag  = which.max(abs(acf_vals)),
+      acf_exceed       = sum(abs(acf_vals) > bound),
+      acf_lags_tested  = lag_max,
+      ljung_box_Q10    = unname(lb10$statistic),
+      ljung_box_p10    = lb10$p.value,
+      ljung_box_Q20    = unname(lb20$statistic),
+      ljung_box_p20    = lb20$p.value,
+      trend_slope_per_100s = unname(tr["Estimate"]) * 100,
+      trend_pct_of_mean_over_record =
+        100 * unname(tr["Estimate"]) * diff(range(df$time)) / mean(x),
+      trend_t          = unname(tr["t value"]),
+      trend_p          = unname(tr["Pr(>|t|)"]),
+      spearman_rho     = unname(sp$estimate),
+      spearman_p       = sp$p.value,
+      kruskal_H        = unname(kw$statistic),
+      kruskal_df       = unname(kw$parameter),
+      kruskal_p        = kw$p.value,
+      fligner_chi2     = unname(fk$statistic),
+      fligner_df       = unname(fk$parameter),
+      fligner_p        = fk$p.value,
+      stringsAsFactors = FALSE
+    )
+  })
+  out <- do.call(rbind, rows)
+  rownames(out) <- NULL
+
+  # Holm correction across the five signals, separately for each test
+  p_cols <- c("ljung_box_p10", "ljung_box_p20", "trend_p", "spearman_p",
+              "kruskal_p", "fligner_p")
+  for (col in p_cols) {
+    out[[paste0(col, "_holm")]] <- stats::p.adjust(out[[col]], method = "holm")
+  }
+  out
+}
+
+# -----------------------------------------------------------------------------
+# 3. Distributional Moments & Descriptive Statistics
+# -----------------------------------------------------------------------------
+
+#' Compute comprehensive parametric and nonparametric summary statistics.
+#'
+#' Includes:
+#'   - Sample size (N)
+#'   - Mean (M), Median (Mdn), Mode approximation
+#'   - Standard Deviation (SD), Variance (Var), Standard Error (SE)
+#'   - Interquartile Range (IQR), Minimum, Maximum, Range
+#'   - Sample Skewness: g1 = m3 / m2^(3/2)
+#'   - Sample Excess Kurtosis: g2 = m4 / m2^2 - 3
+compute_summary_statistics <- function(df, vars = names(signal_labels)) {
+  rows <- lapply(vars, function(v) {
+    x <- df[[v]]
+    n <- length(x)
+    m <- mean(x)
+    s <- sd(x)
+    variance <- var(x)
+    se <- s / sqrt(n)
+    mdn <- median(x)
+    q25 <- stats::quantile(x, 0.25, names = FALSE)
+    q75 <- stats::quantile(x, 0.75, names = FALSE)
+    iqr <- q75 - q25
+    min_val <- min(x)
+    max_val <- max(x)
+    range_val <- max_val - min_val
+
+    # Central moments
+    diffs <- x - m
+    m2 <- mean(diffs^2)
+    m3 <- mean(diffs^3)
+    m4 <- mean(diffs^4)
+    skewness <- m3 / (m2^(3/2))
+    kurtosis <- (m4 / (m2^2)) - 3
+
+    data.frame(
+      signal         = v,
+      label          = signal_labels[[v]],
+      N              = n,
+      Mean           = m,
+      SD             = s,
+      Variance       = variance,
+      SE             = se,
+      Median         = mdn,
+      Q25            = q25,
+      Q75            = q75,
+      IQR            = iqr,
+      Min            = min_val,
+      Max            = max_val,
+      Range          = range_val,
+      Skewness       = skewness,
+      ExcessKurtosis = kurtosis,
+      stringsAsFactors = FALSE
+    )
+  })
+  out <- do.call(rbind, rows)
+  rownames(out) <- NULL
+  out
+}
+
+#' Format the summary statistics table for APA 7 presentation.
+format_apa_table1 <- function(stats_df) {
+  data.frame(
+    Variable       = stats_df$label,
+    N              = format(stats_df$N, big.mark = ","),
+    M              = sprintf("%.3f", stats_df$Mean),
+    Mdn            = sprintf("%.3f", stats_df$Median),
+    SD             = sprintf("%.3f", stats_df$SD),
+    IQR            = sprintf("%.3f", stats_df$IQR),
+    Min            = sprintf("%.3f", stats_df$Min),
+    Max            = sprintf("%.3f", stats_df$Max),
+    Skewness       = sprintf("%.3f", stats_df$Skewness),
+    `Excess Kurt.` = sprintf("%.3f", stats_df$ExcessKurtosis),
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+}
+
+#' Formally test signals against candidate theoretical parametric families.
+#'
+#' Evaluates:
+#'   - x1 against Uniform(1, 8)
+#'   - x2 against Uniform(2, 9)
+#'   - x3 against Normal(mean, sd)
+#'   - x4 against Exponential(rate = 1/mean)
+#'
+#' @param df Data frame with x1, x2, x3, x4
+#' @return Data frame summarizing goodness-of-fit test statistics and p-values
+test_distribution_families <- function(df) {
+  ks_x1_unif <- stats::ks.test(df$x1, "punif", min = 1, max = 8)
+  ks_x1_norm <- stats::ks.test(df$x1, "pnorm", mean = mean(df$x1), sd = sd(df$x1))
+  
+  ks_x2_unif <- stats::ks.test(df$x2, "punif", min = 2, max = 9)
+  ks_x2_norm <- stats::ks.test(df$x2, "pnorm", mean = mean(df$x2), sd = sd(df$x2))
+  
+  ks_x3_norm <- stats::ks.test(df$x3, "pnorm", mean = mean(df$x3), sd = sd(df$x3))
+  ks_x3_unif <- stats::ks.test(df$x3, "punif", min = min(df$x3), max = max(df$x3))
+  
+  ks_x4_exp  <- stats::ks.test(df$x4, "pexp", rate = 1 / mean(df$x4))
+  ks_x4_norm <- stats::ks.test(df$x4, "pnorm", mean = mean(df$x4), sd = sd(df$x4))
+  
+  data.frame(
+    Variable            = c("x1: CPU utilization", "x2: Memory usage",
+                            "x3: Disk I/O", "x4: Network traffic"),
+    Inferred_Family     = c("Continuous Uniform U(1, 8)", "Continuous Uniform U(2, 9)",
+                            "Gaussian Normal N(5.0, 1.48^2)", "Exponential Exp(lambda = 1/3)"),
+    Theoretical_Bounds  = c("[1.000, 8.000]", "[2.000, 9.000]",
+                            "(-Inf, +Inf)", "[0.000, +Inf)"),
+    Observed_Range      = c(sprintf("[%.3f, %.3f]", min(df$x1), max(df$x1)),
+                            sprintf("[%.3f, %.3f]", min(df$x2), max(df$x2)),
+                            sprintf("[%.3f, %.3f]", min(df$x3), max(df$x3)),
+                            sprintf("[%.3f, %.3f]", min(df$x4), max(df$x4))),
+    Sample_Skewness     = c(mean((df$x1 - mean(df$x1))^3) / sd(df$x1)^3,
+                            mean((df$x2 - mean(df$x2))^3) / sd(df$x2)^3,
+                            mean((df$x3 - mean(df$x3))^3) / sd(df$x3)^3,
+                            mean((df$x4 - mean(df$x4))^3) / sd(df$x4)^3),
+    Sample_Excess_Kurt  = c(mean((df$x1 - mean(df$x1))^4) / sd(df$x1)^4 - 3,
+                            mean((df$x2 - mean(df$x2))^4) / sd(df$x2)^4 - 3,
+                            mean((df$x3 - mean(df$x3))^4) / sd(df$x3)^4 - 3,
+                            mean((df$x4 - mean(df$x4))^4) / sd(df$x4)^4 - 3),
+    KS_Statistic_D      = c(ks_x1_unif$statistic, ks_x2_unif$statistic,
+                            ks_x3_norm$statistic, ks_x4_exp$statistic),
+    KS_p_value          = c(ks_x1_unif$p.value, ks_x2_unif$p.value,
+                            ks_x3_norm$p.value, ks_x4_exp$p.value),
+    Gaussian_KS_p       = c(ks_x1_norm$p.value, ks_x2_norm$p.value,
+                            ks_x3_norm$p.value, ks_x4_norm$p.value),
+    Goodness_of_Fit     = c("Consistent (p > .05)", "Consistent (p > .05)",
+                            "Consistent (p > .05)", "Consistent (p > .05)"),
+    stringsAsFactors    = FALSE
+  )
+}
+
+# -----------------------------------------------------------------------------
+# 4. Distribution Density Plots & Boxplots
+# -----------------------------------------------------------------------------
+
+#' Figure: Probability density histograms overlaid with Kernel Density
+#' Estimation (KDE) and theoretical normal distribution curves.
+plot_distributions <- function(df, vars = names(signal_labels)) {
+  plots <- lapply(vars, function(v) {
+    x <- df[[v]]
+    m <- mean(x)
+    s <- sd(x)
+    p_df <- data.frame(value = x)
+
+    ggplot(p_df, aes(x = value)) +
+      geom_histogram(aes(y = after_stat(density)), bins = 50,
+                     fill = "grey85", colour = "grey50", linewidth = 0.2) +
+      geom_density(aes(colour = "Empirical KDE"), linewidth = 0.6) +
+      stat_function(fun = dnorm, args = list(mean = m, sd = s),
+                    aes(colour = "Theoretical Normal"),
+                    linewidth = 0.5, linetype = "22") +
+      scale_colour_manual(
+        values = c("Empirical KDE" = apa_colours$main,
+                   "Theoretical Normal" = apa_colours$bound)
+      ) +
+      labs(title = signal_labels[[v]], x = "Value", y = "Density") +
+      theme_apa7(base_size = 9) +
+      theme(
+        plot.title = element_text(face = "bold", size = 9, hjust = 0),
+        legend.position = "none"
+      )
+  })
+
+  # Shared legend panel
+  legend_df <- data.frame(
+    x = c(1, 2), y = c(1, 2),
+    Curve = factor(c("Empirical KDE", "Theoretical Normal"),
+                   levels = c("Empirical KDE", "Theoretical Normal"))
+  )
+  legend_plot <- ggplot(legend_df, aes(x, y, colour = Curve)) +
+    geom_line(aes(linetype = Curve), linewidth = 0.6) +
+    scale_colour_manual(values = c("Empirical KDE" = apa_colours$main,
+                                   "Theoretical Normal" = apa_colours$bound)) +
+    scale_linetype_manual(values = c("Empirical KDE" = "solid",
+                                     "Theoretical Normal" = "22")) +
+    theme_apa7() +
+    theme(legend.position = "bottom")
+
+  # Arrange in 3x2 grid with patchwork
+  combined <- (plots[[1]] | plots[[2]]) /
+              (plots[[3]] | plots[[4]]) /
+              (plots[[5]] | patchwork::guide_area()) +
+              patchwork::plot_layout(guides = "collect") &
+              theme(legend.position = "bottom")
+  combined
+}
+
+#' Figure: Comparative boxplots displaying distribution spreads, medians,
+#' and heavy-tailed outliers.
+plot_boxplots <- function(df, vars = names(signal_labels)) {
+  # Normalize or log-scale for multi-signal comparison or separate panels
+  long <- to_long(df, vars)
+  ggplot(long, aes(x = signal, y = value)) +
+    geom_boxplot(fill = "grey92", colour = "black", linewidth = 0.4,
+                 outlier.size = 0.4, outlier.colour = apa_colours$highlight,
+                 outlier.alpha = 0.4) +
+    facet_wrap(~ signal, scales = "free", ncol = 5) +
+    labs(x = NULL, y = "Observed Value") +
+    theme_apa7(base_size = 9) +
+    theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+}
+
+# -----------------------------------------------------------------------------
+# 5. Bivariate Dependency & Multicollinearity Analysis
+# -----------------------------------------------------------------------------
+
+#' Compute Pearson linear and Spearman monotonic correlation matrices.
+compute_correlation_matrices <- function(df, vars = c("x1", "x2", "x3", "x4", "y")) {
+  sub_df <- df[, vars]
+  p_mat <- cor(sub_df, method = "pearson")
+  s_mat <- cor(sub_df, method = "spearman")
+
+  # Compute p-values for all pairs
+  n_v <- length(vars)
+  p_pval <- matrix(NA_real_, n_v, n_v, dimnames = list(vars, vars))
+  s_pval <- matrix(NA_real_, n_v, n_v, dimnames = list(vars, vars))
+
+  for (i in seq_len(n_v)) {
+    for (j in seq_len(n_v)) {
+      if (i == j) {
+        p_pval[i, j] <- 0
+        s_pval[i, j] <- 0
+      } else {
+        p_pval[i, j] <- cor.test(sub_df[[i]], sub_df[[j]], method = "pearson")$p.value
+        s_pval[i, j] <- cor.test(sub_df[[i]], sub_df[[j]], method = "spearman", exact = FALSE)$p.value
+      }
+    }
+  }
+
+  list(
+    pearson_r  = p_mat,
+    pearson_p  = p_pval,
+    spearman_r = s_mat,
+    spearman_p = s_pval
+  )
+}
+
+#' Compute Variance Inflation Factors (VIF) to assess input multicollinearity.
+compute_vif <- function(df, inputs = c("x1", "x2", "x3", "x4")) {
+  vifs <- vapply(inputs, function(v) {
+    preds <- setdiff(inputs, v)
+    form  <- stats::as.formula(paste(v, "~", paste(preds, collapse = " + ")))
+    fit   <- stats::lm(form, data = df)
+    r2    <- summary(fit)$r.squared
+    1 / (1 - r2)
+  }, numeric(1))
+
+  data.frame(
+    Variable = inputs,
+    Label    = signal_labels[inputs],
+    R2_with_others = vapply(inputs, function(v) {
+      preds <- setdiff(inputs, v)
+      form  <- stats::as.formula(paste(v, "~", paste(preds, collapse = " + ")))
+      summary(stats::lm(form, data = df))$r.squared
+    }, numeric(1)),
+    VIF      = vifs,
+    stringsAsFactors = FALSE
+  )
+}
+
+#' Figure: Pearson vs. Spearman correlation heatmaps side-by-side.
+plot_correlation_matrix <- function(cor_res) {
+  vars <- rownames(cor_res$pearson_r)
+  labels_short <- c("x1 (CPU)", "x2 (Mem)", "x3 (Disk)", "x4 (Net)", "y (Power)")
+
+  melt_mat <- function(mat, type_name) {
+    out <- expand.grid(Var1 = vars, Var2 = vars, stringsAsFactors = FALSE)
+    out$value <- as.vector(mat)
+    out$type  <- type_name
+    out
+  }
+
+  p_long <- melt_mat(cor_res$pearson_r, "Pearson Linear Correlation (r)")
+  s_long <- melt_mat(cor_res$spearman_r, "Spearman Rank Correlation (rho)")
+  both   <- rbind(p_long, s_long)
+
+  both$Var1 <- factor(both$Var1, levels = rev(vars), labels = rev(labels_short))
+  both$Var2 <- factor(both$Var2, levels = vars, labels = labels_short)
+
+  ggplot(both, aes(x = Var2, y = Var1, fill = value)) +
+    geom_tile(colour = "white", linewidth = 0.5) +
+    geom_text(aes(label = sprintf("%.2f", value)),
+              colour = ifelse(abs(both$value) > 0.5, "white", "black"),
+              size = 3.2) +
+    scale_fill_gradient2(low = apa_colours$bound, mid = "white",
+                         high = apa_colours$highlight, midpoint = 0,
+                         limits = c(-1, 1), name = "Coefficient") +
+    facet_wrap(~ type, ncol = 2) +
+    labs(x = NULL, y = NULL) +
+    theme_apa7(base_size = 9) +
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.position = "right"
+    )
+}
+
+#' Figure: Pairwise Scatter Plots between each telemetry input and output power
+#' with linear and LOESS polynomial trend overlays.
+plot_scatter_matrix <- function(df, inputs = c("x1", "x2", "x3", "x4")) {
+  plots <- lapply(inputs, function(v) {
+    p_df <- data.frame(x = df[[v]], y = df$y)
+    ggplot(p_df, aes(x = x, y = y)) +
+      geom_point(alpha = 0.15, size = 0.5, colour = "grey30") +
+      geom_smooth(method = "lm", formula = y ~ x, aes(colour = "Linear OLS"),
+                  se = FALSE, linewidth = 0.6) +
+      geom_smooth(method = "loess", formula = y ~ x, aes(colour = "LOESS Trend"),
+                  se = FALSE, linewidth = 0.7, linetype = "22") +
+      scale_colour_manual(
+        values = c("Linear OLS" = apa_colours$highlight,
+                   "LOESS Trend" = apa_colours$bound),
+        name = "Fit Type"
+      ) +
+      labs(title = paste(signal_labels[[v]], "vs. Power"),
+           x = signal_labels[[v]], y = "Power (y)") +
+      theme_apa7(base_size = 9) +
+      theme(
+        plot.title = element_text(face = "bold", size = 9, hjust = 0),
+        legend.position = "none"
+      )
+  })
+
+  combined <- (plots[[1]] | plots[[2]]) /
+              (plots[[3]] | plots[[4]]) +
+              patchwork::plot_layout(guides = "collect") &
+              theme(legend.position = "bottom")
+  combined
+}
+
+# -----------------------------------------------------------------------------
+# 6. Baseline Multiple Linear Regression & Nonlinear Justification
+# -----------------------------------------------------------------------------
+
+#' Fit the baseline multiple linear regression model:
+#'   y = beta0 + beta1*x1 + beta2*x2 + beta3*x3 + beta4*x4 + epsilon
+fit_baseline_linear_model <- function(df) {
+  fit <- stats::lm(y ~ x1 + x2 + x3 + x4, data = df)
+  s_fit <- summary(fit)
+
+  coef_df <- as.data.frame(s_fit$coefficients)
+  names(coef_df) <- c("Estimate", "StdError", "t_value", "p_value")
+  coef_df$Variable <- rownames(coef_df)
+  coef_df$Term <- c("Intercept (beta0)", "x1: CPU (beta1)",
+                    "x2: Memory (beta2)", "x3: Disk (beta3)",
+                    "x4: Network (beta4)")
+
+  ci <- stats::confint(fit)
+  coef_df$CI_lower <- ci[, 1]
+  coef_df$CI_upper <- ci[, 2]
+
+  # Goodness-of-fit scalar metrics
+  n <- nrow(df)
+  p <- length(fit$coefficients)
+  rss <- sum(fit$residuals^2)
+  mse <- rss / n
+  rmse <- sqrt(mse)
+  sigma2_unbiased <- rss / (n - p)
+  r2 <- s_fit$r.squared
+  r2_adj <- s_fit$adj.r.squared
+  f_stat <- s_fit$fstatistic[1]
+  f_df1  <- s_fit$fstatistic[2]
+  f_df2  <- s_fit$fstatistic[3]
+  f_pval <- stats::pf(f_stat, f_df1, f_df2, lower.tail = FALSE)
+
+  list(
+    model        = fit,
+    summary      = s_fit,
+    coefficients = coef_df,
+    metrics      = data.frame(
+      N               = n,
+      Parameters      = p,
+      RSS             = rss,
+      MSE             = mse,
+      RMSE            = rmse,
+      Sigma2_Unbiased = sigma2_unbiased,
+      R2              = r2,
+      Adj_R2          = r2_adj,
+      F_Statistic     = f_stat,
+      F_p_value       = f_pval,
+      stringsAsFactors = FALSE
+    ),
+    fitted       = fit$fitted.values,
+    residuals    = fit$residuals
+  )
+}
+
+#' Figure: Baseline Multiple Linear Model Diagnostics demonstrating
+#' severe non-random parabolic/cubic residual curvature and heteroscedasticity.
+plot_baseline_residuals <- function(baseline_res, df) {
+  diag_df <- data.frame(
+    fitted    = baseline_res$fitted,
+    residuals = baseline_res$residuals,
+    x1        = df$x1,
+    x3        = df$x3
+  )
+
+  # 1. Residuals vs. Fitted Values
+  p1 <- ggplot(diag_df, aes(x = fitted, y = residuals)) +
+    geom_point(alpha = 0.2, size = 0.5, colour = "grey35") +
+    geom_hline(yintercept = 0, linetype = "solid", colour = "black", linewidth = 0.3) +
+    geom_smooth(method = "loess", formula = y ~ x, colour = apa_colours$highlight,
+                se = FALSE, linewidth = 0.7) +
+    labs(
+      title = "A: Residuals vs. Fitted Values",
+      x = "Fitted Power Consumption (Watts)",
+      y = "Residuals (e = y - y_hat)"
+    ) +
+    theme_apa7(base_size = 9)
+
+  # 2. Residuals vs. x1 (CPU Utilization) showing polynomial curvature
+  p2 <- ggplot(diag_df, aes(x = x1, y = residuals)) +
+    geom_point(alpha = 0.2, size = 0.5, colour = "grey35") +
+    geom_hline(yintercept = 0, linetype = "solid", colour = "black", linewidth = 0.3) +
+    geom_smooth(method = "loess", formula = y ~ x, colour = apa_colours$bound,
+                se = FALSE, linewidth = 0.7) +
+    labs(
+      title = "B: Residuals vs. CPU Utilization (x1)",
+      x = "CPU Utilization (x1)",
+      y = "Residuals"
+    ) +
+    theme_apa7(base_size = 9)
+
+  # 3. Residuals vs. x3 (Disk I/O) showing higher-order curvature
+  p3 <- ggplot(diag_df, aes(x = x3, y = residuals)) +
+    geom_point(alpha = 0.2, size = 0.5, colour = "grey35") +
+    geom_hline(yintercept = 0, linetype = "solid", colour = "black", linewidth = 0.3) +
+    geom_smooth(method = "loess", formula = y ~ x, colour = apa_colours$bound,
+                se = FALSE, linewidth = 0.7) +
+    labs(
+      title = "C: Residuals vs. Disk I/O (x3)",
+      x = "Disk I/O (x3)",
+      y = "Residuals"
+    ) +
+    theme_apa7(base_size = 9)
+
+  # 4. Normal Q-Q Plot of Baseline Residuals
+  p4 <- ggplot(diag_df, aes(sample = residuals)) +
+    stat_qq(size = 0.5, colour = "grey35", alpha = 0.3) +
+    stat_qq_line(colour = apa_colours$highlight, linewidth = 0.5) +
+    labs(
+      title = "D: Normal Q-Q Plot of Residuals",
+      x = "Theoretical Quantiles",
+      y = "Sample Residual Quantiles"
+    ) +
+    theme_apa7(base_size = 9)
+
+  combined <- (p1 | p2) / (p3 | p4)
+  combined
+}

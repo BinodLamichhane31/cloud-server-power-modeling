@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Coursework_Report_STW7089CEM_APA7</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1
+id="modeling-cloud-server-power-consumption-using-polynomial-regression-and-approximate-bayesian-computation">Modeling
+Cloud Server Power Consumption Using Polynomial Regression and
+Approximate Bayesian Computation</h1>
+<p><strong>Module:</strong> STW7089CEM Introduction to Statistical
+Methods for Data Science<br />
+<strong>Academic Style:</strong> American Psychological Association
+(APA) 7th Edition<br />
+<strong>Target Specification:</strong> Master Level Academic Coursework
+Report (3,000–4,000 Words)</p>
+<hr />
+<h1 id="author-note">Author Note</h1>
+<p>This coursework report investigates empirical telemetry from
+enterprise cloud server infrastructure to characterize, model, and infer
+power consumption dynamics across heterogeneous computational workloads.
+All statistical analyses, closed-form matrix calculations, diagnostic
+tests, and simulation algorithms were developed and executed using pure
+R (Version 4.4.1). Complete annotated code listings, reproducible master
+execution scripts, and supplementary artifact tables are provided in the
+appendices and accompanying project repository.</p>
+<hr />
+<h1 id="abstract">Abstract</h1>
+<p>Modern cloud data centers face stringent operational challenges
+regarding electrical provisioning, thermal management, and carbon
+efficiency. Accurate predictive modeling of server power consumption as
+a function of multi-subsystem resource utilization is essential for
+dynamic power capping and workload scheduling. This study presents an
+end-to-end statistical framework to model server power consumption using
+10,000 synchronous telemetry observations of processor core load (<span
+class="math inline">\(x_1\)</span>), memory utilization (<span
+class="math inline">\(x_2\)</span>), storage I/O operations (<span
+class="math inline">\(x_3\)</span>), and network throughput (<span
+class="math inline">\(x_4\)</span>). Exploratory data analysis
+identified parametric distributions across subsystem metrics, verified
+temporal stationarity and predictor orthogonality (<span
+class="math inline">\(\text{VIF} \approx 1.000\)</span>), and
+demonstrated the failure of multiple linear regression (<span
+class="math inline">\(R^2 = .0342\)</span>). Five candidate polynomial
+models were formulated and estimated using both closed-form Normal
+Equations and numerically stable QR decomposition. Information-theoretic
+criteria (<span class="math inline">\(\text{AIC} = 60,609.9; \text{BIC}
+= 60,645.9\)</span>), supported by nested analysis of variance (<span
+class="math inline">\(F = 0.328, p = .567\)</span>), definitively
+selected Model 2 (<span class="math inline">\(y = \theta_0 + \theta_1
+x_4 + \theta_2 x_1^3 + \theta_3 x_3^4 + \epsilon\)</span>) as the true
+data-generating process (<span class="math inline">\(R^2 = .99997,
+\hat{\sigma} = 5.009\text{ W}\)</span>). Model 2 residuals satisfied
+Gaussian assumptions across a formal testing battery (Kolmogorov-Smirnov
+<span class="math inline">\(p = .963\)</span>, Jarque-Bera <span
+class="math inline">\(p = .279\)</span>, Shapiro-Wilk <span
+class="math inline">\(p = .724\)</span>). On an unseen 30% holdout split
+(<span class="math inline">\(N = 3,000\)</span>), Model 2 achieved an
+empirical 95% prediction interval coverage of 95.47%. Finally,
+vectorized Rejection Approximate Bayesian Computation (ABC) was
+conducted for the two dominant parameters (<span
+class="math inline">\(\theta_0\)</span> and <span
+class="math inline">\(\theta_1\)</span>). Posterior means converged to
+within 0.05% of Frequentist estimates, validating the Bernstein-von
+Mises theorem, while uncovering negative posterior parameter coupling
+(<span class="math inline">\(r = -0.722\)</span>) driven by the
+non-negative support of network throughput. Physical interpretations and
+data center power management implications are discussed.</p>
+<p><em>Keywords:</em> Cloud Server Power Modeling, Polynomial
+Regression, QR Decomposition, Model Selection, Residual Diagnostics,
+Approximate Bayesian Computation (ABC), Highest Posterior Density
+Interval, APA 7th Edition.</p>
+<hr />
+<h1 id="introduction">Introduction</h1>
+<p>Electrical energy expenditure constitutes the primary operational
+cost in cloud data centers, directly constraining infrastructure
+density, cooling overhead, and carbon efficiency (Barroso et al., 2018).
+In dual-socket rack server architecture, aggregate electrical power draw
+varies dynamically across four primary subsystems: the central
+processing unit (CPU), volatile memory (RAM), secondary storage, and
+network interface controllers (NICs). Because electrical
+over-provisioning requires excessive capital expenditure while
+under-provisioning risks tripping rack power distribution units (PDUs),
+facility operators rely on mathematical power models for dynamic power
+capping, energy-aware virtual machine placement, and proactive thermal
+management.</p>
+<p>Semiconductor power dissipation in complementary
+metal-oxide-semiconductor (CMOS) digital logic comprises static leakage
+and dynamic switching power (Rabaey et al., 2003): <span
+class="math display">\[P_{total} = P_{static} + P_{dynamic} = V_{dd}
+I_{leak} + \alpha C_{eff} V_{dd}^2 f\]</span> where <span
+class="math inline">\(V_{dd}\)</span> is supply voltage, <span
+class="math inline">\(I_{leak}\)</span> denotes sub-threshold leakage
+current, <span class="math inline">\(\alpha\)</span> is the switching
+activity factor, <span class="math inline">\(C_{eff}\)</span> is load
+capacitance, and <span class="math inline">\(f\)</span> is operational
+clock frequency.</p>
+<p>Under dynamic voltage and frequency scaling (DVFS), modern operating
+system governors modulate clock frequency <span
+class="math inline">\(f\)</span> proportionally to workload intensity,
+concurrently scaling voltage <span class="math inline">\(V_{dd} \propto
+f\)</span>. Because dynamic power scales with <span
+class="math inline">\(V_{dd}^2 f\)</span>, processor power exhibits a
+cubic relationship with operational frequency (<span
+class="math inline">\(P_{dynamic} \propto f^3\)</span>). Similarly,
+secondary storage subsystems exhibit non-linear power consumption during
+heavy queue saturation due to write amplification, controller direct
+memory access (DMA) overhead, and flash translation layer (FTL) wear
+leveling.</p>
+<p>Despite these physical phenomena, industrial monitoring architectures
+frequently rely on simplistic linear approximations that fail to capture
+non-linear resource interactions. This investigation addresses this
+limitation by developing an end-to-end statistical modeling framework in
+pure R (Version 4.4.1), structured into three core components: 1.
+<strong>Task 1: Preliminary Data Analysis:</strong> Ingest and audit
+10,000 synchronized telemetry observations, evaluate temporal
+stationarity, identify underlying parametric distributions, quantify
+dependency structures, and demonstrate baseline linear model failure. 2.
+<strong>Task 2: Regression Modeling and Diagnostics:</strong> Formulate
+five candidate polynomial models, estimate parameter vectors via
+closed-form Normal Equations and QR decomposition, compute variance
+estimators and Gaussian log-likelihoods, conduct residual hypothesis
+testing, perform information-theoretic model selection (AIC, AICc, BIC,
+nested ANOVA), and validate out-of-sample generalization with analytical
+95% prediction intervals. 3. <strong>Task 3: Approximate Bayesian
+Computation:</strong> Implement a high-performance vectorized Rejection
+ABC simulation engine to infer posterior probability distributions for
+the two dominant model parameters, evaluate tolerance sensitivity,
+construct 95% Highest Posterior Density Intervals (HPDI), explain
+bivariate parameter coupling, and contrast Bayesian subjective credible
+intervals against Frequentist confidence intervals.</p>
+<hr />
+<h1 id="task-1-preliminary-data-analysis">Task 1: Preliminary Data
+Analysis</h1>
+<h2
+id="task-1.1-data-ingestion-schema-audit-and-sampling-characteristics">Task
+1.1: Data Ingestion, Schema Audit, and Sampling Characteristics</h2>
+<p>The experimental dataset comprises three synchronized files:
+<code>X.csv</code> containing four subsystem activity metrics,
+<code>y.csv</code> recording total server power draw measured in Watts,
+and <code>time.csv</code> providing sampling timestamps in seconds.
+Telemetry ingestion was executed via a dedicated pipeline (<a
+href="file:///Users/binodlamichhane/Documents/cloud-server-power-modeling/R/00_utils_io.R"><code>00_utils_io.R</code></a>)
+that audits schema conformity, detects missing observations, and handles
+floating-point timestamp sequences.</p>
+<p>Table 1 summarizes the structural audit of the ingested telemetry
+signals.</p>
+<p><strong>Table 1</strong><br />
+<em>Dataset Schema, Telemetry Variable Definitions, and Data Quality
+Audit</em></p>
+<figure>
+<img src="tables/table1_data_audit.png" style="width:100.0%"
+alt="Table 1: Dataset Schema and Data Quality Audit" />
+<figcaption aria-hidden="true">Table 1: Dataset Schema and Data Quality
+Audit</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>
+observations. Monitoring commenced at <span class="math inline">\(t =
+0.0\text{ s}\)</span> and concluded at <span class="math inline">\(t =
+999.9\text{ s}\)</span>. Monotonicity validation confirmed a constant
+sampling interval of <span class="math inline">\(\Delta t = 0.1\text{
+s}\)</span> (<span class="math inline">\(f_s = 10\text{ Hz}\)</span>)
+with zero missing cells across all 60,000 observations.</p>
+<p>Inspection of the temporal grid verified that measurements were
+collected at an invariant sampling rate of <span
+class="math inline">\(10\text{ Hz}\)</span> across a continuous
+monitoring window of <span class="math inline">\(999.9\text{
+seconds}\)</span> (approximately <span class="math inline">\(16.67\text{
+minutes}\)</span>) with zero missing values across all <span
+class="math inline">\(60,000\)</span> data cells. Total power draw
+(<span class="math inline">\(y\)</span>) exhibits substantial dynamic
+range, oscillating between an idle baseline of approximately <span
+class="math inline">\(120\text{ W}\)</span> and workload-induced peaks
+exceeding <span class="math inline">\(4,500\text{ W}\)</span> (Figure
+1). High-resolution inspection across a 15-second window (Figure 1b)
+indicates rapid, non-monotonic burstiness across all input channels.</p>
+<p><strong>Figure 1</strong><br />
+<em>Synchronous Multi-Panel Time-Series Telemetry and Total Power
+Consumption Profiles</em></p>
+<figure>
+<img src="figures/fig1_timeseries_telemetry.png" style="width:95.0%"
+alt="Figure 1: Synchronous Multi-Panel Time-Series Telemetry" />
+<figcaption aria-hidden="true">Figure 1: Synchronous Multi-Panel
+Time-Series Telemetry</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>
+telemetry observations at <span class="math inline">\(f_s = 10\text{
+Hz}\)</span> (<span class="math inline">\(\Delta t = 0.1\text{
+s}\)</span>). Subsystems comprise CPU clock speed (<span
+class="math inline">\(x_1\)</span>), RAM allocation (<span
+class="math inline">\(x_2\)</span>), storage I/O (<span
+class="math inline">\(x_3\)</span>), and network throughput (<span
+class="math inline">\(x_4\)</span>) plotted alongside total electrical
+power draw (<span class="math inline">\(y\)</span>).</p>
+<p><strong>Figure 1b</strong><br />
+<em>High-Resolution Time-Series Telemetry Zoom Across 15-Second
+Operational Window</em></p>
+<figure>
+<img src="figures/fig1b_timeseries_zoom.png" style="width:95.0%"
+alt="Figure 1b: High-Resolution Time-Series Telemetry Zoom" />
+<figcaption aria-hidden="true">Figure 1b: High-Resolution Time-Series
+Telemetry Zoom</figcaption>
+</figure>
+<p><em>Note.</em> Workload burstiness across a 15-second slice (<span
+class="math inline">\(t \in [100.0, 115.0]\text{ s}\)</span>)
+demonstrating rapid high-frequency fluctuations.</p>
+<p>Sample Autocorrelation Functions (ACF) and Partial Autocorrelation
+Functions (PACF) up to lag <span class="math inline">\(k = 40\)</span>
+(Figure 2) drop immediately into the 95% Bartlett confidence band (<span
+class="math inline">\(\pm 1.96/\sqrt{N} = \pm 0.0196\)</span>) at lag
+<span class="math inline">\(k = 1\)</span>: <span
+class="math inline">\(r_1(x_1) = 0.004\)</span>, <span
+class="math inline">\(r_1(x_2) = -0.009\)</span>, <span
+class="math inline">\(r_1(x_3) = 0.011\)</span>, and <span
+class="math inline">\(r_1(x_4) = -0.003\)</span>. Augmented
+Dickey-Fuller (ADF) tests rejected the null hypothesis of a unit root
+(<span class="math inline">\(p &lt; .01\)</span>), confirming that all
+inputs behave as strictly stationary stochastic processes.</p>
+<p><strong>Figure 2</strong><br />
+<em>Sample Autocorrelation (ACF) and Partial Autocorrelation (PACF)
+Diagnostic Profiles</em></p>
+<figure>
+<img src="figures/fig2_acf_pacf.png" style="width:95.0%"
+alt="Figure 2: Sample Autocorrelation and Partial Autocorrelation Profiles" />
+<figcaption aria-hidden="true">Figure 2: Sample Autocorrelation and
+Partial Autocorrelation Profiles</figcaption>
+</figure>
+<p><em>Note.</em> ACF and PACF computed up to lag <span
+class="math inline">\(k = 40\)</span>. Dashed blue lines indicate 95%
+Bartlett confidence limits (<span class="math inline">\(\pm
+1.96/\sqrt{N} = \pm 0.0196\)</span>).</p>
+<h2
+id="task-1.2-distribution-for-each-signal-and-parametric-goodness-of-fit">Task
+1.2: Distribution for Each Signal and Parametric Goodness-of-Fit</h2>
+<p>To characterize telemetry properties, non-parametric sample moments
+were computed: mean (<span class="math inline">\(M\)</span>), median
+(<span class="math inline">\(Mdn\)</span>), standard deviation (<span
+class="math inline">\(SD\)</span>), sample variance (<span
+class="math inline">\(s^2\)</span>), interquartile range (<span
+class="math inline">\(IQR\)</span>), Fisher-Pearson standardized
+skewness (<span class="math inline">\(g_1\)</span>), and excess kurtosis
+(<span class="math inline">\(g_2\)</span>) (Table 2).</p>
+<p><strong>Table 2</strong><br />
+<em>Descriptive Statistics and Distributional Moments of Server
+Telemetry Metrics</em></p>
+<figure>
+<img src="tables/table2_descriptive_statistics.png" style="width:100.0%"
+alt="Table 2: Descriptive Statistics of Server Telemetry" />
+<figcaption aria-hidden="true">Table 2: Descriptive Statistics of Server
+Telemetry</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>
+observations. Excess kurtosis is reported relative to a Gaussian
+baseline (<span class="math inline">\(g_2 = 0\)</span>). Predictors
+<span class="math inline">\(x_1, x_2, x_3\)</span>, and <span
+class="math inline">\(x_4\)</span> denote CPU load (GHz), memory
+allocation (GB), storage activity (kIOPS), and network throughput
+(Gbps).</p>
+<p>The moments reveal three distinct parametric families: *
+<strong>Processor (<span class="math inline">\(x_1\)</span>) and Memory
+(<span class="math inline">\(x_2\)</span>):</strong> Both exhibit excess
+kurtosis matching the theoretical platykurtic bound of continuous
+uniform distributions: <span class="math inline">\(g_2(\mathcal{U}[a,
+b]) = -1.200\)</span> (<span class="math inline">\(g_2(x_1) = -1.1894,
+g_2(x_2) = -1.1972\)</span>), with sample variances matching theoretical
+uniform variance <span class="math inline">\(\sigma^2 = (b-a)^2/12
+\approx 4.083\)</span> over <span class="math inline">\(x_1 \sim
+\mathcal{U}[1, 8]\text{ GHz}\)</span> and <span
+class="math inline">\(x_2 \sim \mathcal{U}[2, 9]\text{ GB}\)</span>. *
+<strong>Storage (<span class="math inline">\(x_3\)</span>):</strong>
+Conforms to a Gaussian distribution (<span class="math inline">\(M =
+5.0042, Mdn = 5.0113, g_1 = -0.0048, g_2 = -0.0121\)</span>), yielding
+<span class="math inline">\(x_3 \sim \mathcal{N}(5.0, 1.48^2)\)</span>.
+Exactly 5 observations are negative (<span class="math inline">\(\min =
+-0.7853\)</span>), matching the expected theoretical tail: <span
+class="math inline">\(P(X \le 0) = \Phi(-3.376) \approx 0.00037 \implies
+10,000 \times 0.00037 \approx 4\)</span> samples. * <strong>Network
+(<span class="math inline">\(x_4\)</span>):</strong> Strictly
+non-negative (<span class="math inline">\(\min = 0.0002\text{
+Gbps}\)</span>), with empirical mean (<span
+class="math inline">\(3.0105\)</span>) matching standard deviation
+(<span class="math inline">\(3.0084\)</span>), skewness <span
+class="math inline">\(g_1 \approx 2.0\)</span>, and kurtosis <span
+class="math inline">\(g_2 \approx 4.0\)</span>, confirming an
+exponential distribution: <span class="math inline">\(x_4 \sim
+\text{Exp}(\lambda = 1/3)\)</span>.</p>
+<p>One-sample Kolmogorov-Smirnov (<span
+class="math inline">\(KS\)</span>) tests formally validated these
+distributions (Table 3, Figures 3 and 3b).</p>
+<p><strong>Table 3</strong><br />
+<em>Goodness-of-Fit Hypothesis Tests for Telemetry Predictor
+Distributions</em></p>
+<figure>
+<img src="tables/table3_distribution_fit_tests.png" style="width:100.0%"
+alt="Table 3: Goodness-of-Fit Hypothesis Tests" />
+<figcaption aria-hidden="true">Table 3: Goodness-of-Fit Hypothesis
+Tests</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>. High
+<span class="math inline">\(p\)</span>-values confirm that empirical
+telemetry signals conform to their respective theoretical
+distributions.</p>
+<p><strong>Figure 3</strong><br />
+<em>Empirical Distributions of Server Telemetry Metrics and Total
+Electrical Power Draw</em></p>
+<figure>
+<img src="figures/fig3_signal_distributions.png" style="width:95.0%"
+alt="Figure 3: Empirical Distributions of Server Telemetry" />
+<figcaption aria-hidden="true">Figure 3: Empirical Distributions of
+Server Telemetry</figcaption>
+</figure>
+<p><em>Note.</em> Histograms with empirical kernel density estimates
+(solid blue) and theoretical parametric overlays (dashed red).
+Subsystems <span class="math inline">\(x_1\)</span> and <span
+class="math inline">\(x_2\)</span> fit uniform distributions; <span
+class="math inline">\(x_3\)</span> fits Gaussian; <span
+class="math inline">\(x_4\)</span> fits exponential.</p>
+<p><strong>Figure 3b</strong><br />
+<em>Subsystem Telemetry Boxplots and Quantile Dispersion
+Visualizations</em></p>
+<figure>
+<img src="figures/fig3b_signal_boxplots.png" style="width:95.0%"
+alt="Figure 3b: Subsystem Telemetry Boxplots" />
+<figcaption aria-hidden="true">Figure 3b: Subsystem Telemetry
+Boxplots</figcaption>
+</figure>
+<p><em>Note.</em> Tukey boxplots illustrating interquartile ranges,
+median values, and outlier profiles across standardized telemetry
+signals.</p>
+<h2 id="task-1.3-correlation-and-scatter-plots-dependency-analysis">Task
+1.3: Correlation and Scatter Plots (Dependency Analysis)</h2>
+<p>Parametric Pearson linear correlation coefficients (<span
+class="math inline">\(r\)</span>) and non-parametric Spearman rank
+correlation coefficients (<span class="math inline">\(\rho\)</span>)
+were evaluated across all pairs (Table 4, Figures 4 and 5).</p>
+<p><strong>Table 4</strong><br />
+<em>Bivariate Correlation Matrix Among Telemetry Inputs and Server Power
+Draw</em></p>
+<figure>
+<img src="tables/table4_correlation_matrix.png" style="width:100.0%"
+alt="Table 4: Bivariate Correlation Matrix" />
+<figcaption aria-hidden="true">Table 4: Bivariate Correlation
+Matrix</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>.
+Pearson <span class="math inline">\(r\)</span> measures linear
+association; Spearman <span class="math inline">\(\rho\)</span> measures
+monotonic association.</p>
+<p>Table 4 confirms two properties: 1. <strong>Predictor
+Orthogonality:</strong> Pairwise correlations among inputs (<span
+class="math inline">\(x_1, x_2, x_3, x_4\)</span>) are statistically
+zero (<span class="math inline">\(|r| \le 0.0084, p &gt; .40\)</span>).
+Variance Inflation Factors confirmed complete independence: <span
+class="math inline">\(\text{VIF}(x_j) \approx 1.000\)</span> across all
+inputs. 2. <strong>Selective Subsystem Sensitivity:</strong> Total power
+<span class="math inline">\(y\)</span> exhibits dominant positive
+monotonic dependence with storage load <span
+class="math inline">\(x_3\)</span> (<span class="math inline">\(r =
+.9784, \rho = .9612\)</span>) and moderate dependence with processor
+utilization <span class="math inline">\(x_1\)</span> (<span
+class="math inline">\(r = .1782, \rho = .1942\)</span>). Memory
+allocation <span class="math inline">\(x_2\)</span> shows zero
+correlation with power (<span class="math inline">\(r = -.0029, p =
+.772\)</span>). Network load <span class="math inline">\(x_4\)</span>
+displays a weak bivariate linear correlation (<span
+class="math inline">\(r = .0152, p = .128\)</span>), which unmasks a
+significant dynamic processing role once non-linear storage and
+processor effects are isolated.</p>
+<p><strong>Figure 4</strong><br />
+<em>Pearson Linear and Spearman Rank Correlation Heatmaps</em></p>
+<figure>
+<img src="figures/fig4_correlation_matrix.png" style="width:95.0%"
+alt="Figure 4: Pearson and Spearman Correlation Heatmaps" />
+<figcaption aria-hidden="true">Figure 4: Pearson and Spearman
+Correlation Heatmaps</figcaption>
+</figure>
+<p><em>Note.</em> Correlation matrices demonstrating complete mutual
+independence among inputs (<span class="math inline">\(|r| &lt;
+0.01\)</span>) and strong selective associations between power (<span
+class="math inline">\(y\)</span>) and subsystems <span
+class="math inline">\(x_3\)</span> and <span
+class="math inline">\(x_1\)</span>.</p>
+<p><strong>Figure 5</strong><br />
+<em>Bivariate Scatter Plot Matrix Across Telemetry Predictors and Power
+Consumption</em></p>
+<figure>
+<img src="figures/fig5_scatter_matrix.png" style="width:95.0%"
+alt="Figure 5: Bivariate Scatter Plot Matrix" />
+<figcaption aria-hidden="true">Figure 5: Bivariate Scatter Plot
+Matrix</figcaption>
+</figure>
+<p><em>Note.</em> Pairwise scatter plots with smoothed trendlines
+illustrating non-linear response curves between inputs and total power
+draw.</p>
+<h2
+id="task-1.4-baseline-multiple-linear-regression-and-model-inadequacy">Task
+1.4: Baseline Multiple Linear Regression and Model Inadequacy</h2>
+<p>To establish an empirical baseline, a multiple linear regression
+model was fitted: <span class="math display">\[y_i = \beta_0 + \beta_1
+x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i} + \beta_4 x_{4,i} +
+\epsilon_i\]</span></p>
+<p>Table 5 summarizes baseline linear model parameters.</p>
+<p><strong>Table 5</strong><br />
+<em>Baseline Multiple Linear Regression Model Performance and
+Coefficients</em></p>
+<figure>
+<img src="tables/table5_baseline_linear_model.png" style="width:100.0%"
+alt="Table 5: Baseline Multiple Linear Regression Model" />
+<figcaption aria-hidden="true">Table 5: Baseline Multiple Linear
+Regression Model</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>. Fit
+metrics: <span class="math inline">\(R^2 = .0342\)</span>, <span
+class="math inline">\(R^2_{adj} = .0338\)</span>, <span
+class="math inline">\(\text{RSS} = 7.538 \times 10^9\text{
+W}^2\)</span>, <span class="math inline">\(\text{RMSE} = 868.2\text{
+W}\)</span>.</p>
+<p>The linear model demonstrates severe structural inadequacy: 1.
+Negligible explained variance (<span class="math inline">\(R^2 =
+.0342\)</span>), leaving over <strong>96.5% of power variance
+unexplained</strong>. 2. Unacceptable prediction error (<span
+class="math inline">\(\text{RMSE} = 868.2\text{ W}\)</span>), comparable
+to mean server power (<span class="math inline">\(M = 1098.2\text{
+W}\)</span>). 3. A physically impossible intercept (<span
+class="math inline">\(\hat{\beta}_0 = -1812.4\text{ W}\)</span>),
+predicting negative power for an idle system. 4. Severe parabolic
+curvature in residuals plotted against fitted values (Figure 6),
+confirming strong non-linearity.</p>
+<p><strong>Figure 6</strong><br />
+<em>Residuals vs. Fitted Values Diagnostic Plot for Baseline Multiple
+Linear Regression</em></p>
+<figure>
+<img src="figures/fig6_baseline_linear_residuals.png"
+style="width:95.0%"
+alt="Figure 6: Residuals vs. Fitted Values for Baseline Linear Model" />
+<figcaption aria-hidden="true">Figure 6: Residuals vs. Fitted Values for
+Baseline Linear Model</figcaption>
+</figure>
+<p><em>Note.</em> Severe parabolic curvature demonstrates pronounced
+structural non-linearity, establishing the complete failure of
+first-order linear models.</p>
+<hr />
+<h1 id="task-2-regression-modeling-and-model-evaluation">Task 2:
+Regression Modeling and Model Evaluation</h1>
+<h2
+id="task-2.1-closed-form-parameter-estimation-normal-equations-vs.-qr-decomposition">Task
+2.1: Closed-Form Parameter Estimation (Normal Equations vs. QR
+Decomposition)</h2>
+<p>Task 2 evaluates five candidate polynomial models specified in the
+coursework brief: * <strong>Model 1:</strong> <span
+class="math inline">\(y = \theta_0 + \theta_1 x_4 + \theta_2 x_1^2 +
+\theta_3 x_1^3 + \theta_4 x_2^4 + \theta_5 x_1^4 + \epsilon\)</span>
+(<span class="math inline">\(p = 6\)</span>) * <strong>Model 2:</strong>
+<span class="math inline">\(y = \theta_0 + \theta_1 x_4 + \theta_2 x_1^3
++ \theta_3 x_3^4 + \epsilon\)</span> (<span class="math inline">\(p =
+4\)</span>) * <strong>Model 3:</strong> <span class="math inline">\(y =
+\theta_0 + \theta_1 x_3^3 + \theta_2 x_3^4 + \epsilon\)</span> (<span
+class="math inline">\(p = 3\)</span>) * <strong>Model 4:</strong> <span
+class="math inline">\(y = \theta_0 + \theta_1 x_2 + \theta_2 x_1^3 +
+\theta_4 x_3^4 + \epsilon\)</span> (<span class="math inline">\(p =
+4\)</span>) * <strong>Model 5:</strong> <span class="math inline">\(y =
+\theta_0 + \theta_1 x_4 + \theta_2 x_1^2 + \theta_3 x_1^3 + \theta_4
+x_3^4 + \epsilon\)</span> (<span class="math inline">\(p =
+5\)</span>)</p>
+<p>For each model <span class="math inline">\(m \in \{1, \dots,
+5\}\)</span>, design matrix <span class="math inline">\(\mathbf{\Phi}_m
+\in \mathbb{R}^{N \times p}\)</span> was constructed with a unit
+intercept column <span class="math inline">\(\theta_0\)</span>.
+Parameters were estimated using both closed-form Normal Equations (<span
+class="math inline">\(\hat{\boldsymbol{\theta}}_{NE} = (\mathbf{\Phi}^T
+\mathbf{\Phi})^{-1} \mathbf{\Phi}^T \mathbf{y}\)</span>) and Householder
+QR decomposition (<span class="math inline">\(\mathbf{\Phi} = \mathbf{Q}
+\mathbf{R} \implies \hat{\boldsymbol{\theta}}_{QR} = \mathbf{R}^{-1}
+\mathbf{Q}^T \mathbf{y}\)</span>). Forming the Gram matrix squares the
+condition number: <span class="math inline">\(\kappa(\mathbf{\Phi}^T
+\mathbf{\Phi}) = \kappa(\mathbf{\Phi})^2\)</span>. In Model 1,
+containing fourth-power terms, <span
+class="math inline">\(\kappa(\mathbf{\Phi}) \approx 1.14 \times
+10^4\)</span> causes <span class="math inline">\(\kappa(\mathbf{\Phi}^T
+\mathbf{\Phi}) \approx 1.31 \times 10^8\)</span>. Solving via QR
+decomposition (<code>qr.solve()</code>) sidesteps Gram matrix inversion,
+maintaining double-precision numerical stability (Golub &amp; Van Loan,
+2013).</p>
+<p>Table 6 reports parameter estimates, standard errors, <span
+class="math inline">\(t\)</span>-statistics, and 95% confidence
+intervals across all five candidate models.</p>
+<p><strong>Table 6</strong><br />
+<em>Estimated Regression Parameters for Candidate Models 1 through
+5</em></p>
+<figure>
+<img src="tables/table6_regression_parameters.png" style="width:100.0%"
+alt="Table 6: Estimated Regression Parameters" />
+<figcaption aria-hidden="true">Table 6: Estimated Regression
+Parameters</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>.
+Estimates computed via QR decomposition and Normal Equations match to
+machine precision (<span class="math inline">\(\max
+|\hat{\boldsymbol{\theta}}_{NE} - \hat{\boldsymbol{\theta}}_{QR}| \le
+2.01 \times 10^{-10}\)</span>).</p>
+<p>In Model 2, all four parameters are highly significant (<span
+class="math inline">\(p &lt; 10^{-15}\)</span>), with <span
+class="math inline">\(t\)</span>-statistics ranging from <span
+class="math inline">\(268.29\)</span> to <span
+class="math inline">\(17,333.82\)</span>. In contrast, Model 5 includes
+an extraneous quadratic term <span class="math inline">\(\theta_2
+(x_1^2)\)</span> whose estimate is <span
+class="math inline">\(-0.0102\)</span> (<span class="math inline">\(SE =
+0.0178, t = -0.573, p = .567\)</span>), demonstrating that <span
+class="math inline">\(x_1^2\)</span> contributes no predictive power
+beyond Model 2.</p>
+<h2 id="task-2.2-model-residual-variance-calculation">Task 2.2: Model
+Residual Variance Calculation</h2>
+<p>Residual error vectors were evaluated as <span
+class="math inline">\(\mathbf{e} = \mathbf{y} -
+\mathbf{\Phi}\hat{\boldsymbol{\theta}}\)</span>. Unbiased residual
+variance (<span class="math inline">\(\hat{\sigma}^2 =
+\text{RSS}/(N-p)\)</span>) and Maximum Likelihood variance (<span
+class="math inline">\(\hat{\sigma}_{ML}^2 = \text{RSS}/N\)</span>) were
+evaluated. Under independent Gaussian disturbances <span
+class="math inline">\(\epsilon_i \overset{iid}{\sim} \mathcal{N}(0,
+\sigma^2)\)</span>, the exact log-likelihood is: <span
+class="math display">\[\ln L(\hat{\boldsymbol{\theta}},
+\hat{\sigma}_{ML}^2) = -\frac{N}{2}\left[\ln(2\pi \hat{\sigma}_{ML}^2) +
+1\right]\]</span></p>
+<p>Table 7 displays performance and log-likelihood statistics across all
+models.</p>
+<p><strong>Table 7</strong><br />
+<em>Model Performance, Residual Variance, and Gaussian Log-Likelihood
+Summary</em></p>
+<figure>
+<img src="tables/table7_model_performance_summary.png"
+style="width:100.0%" alt="Table 7: Model Performance Summary" />
+<figcaption aria-hidden="true">Table 7: Model Performance
+Summary</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>. Model
+2 achieves <span class="math inline">\(R^2 = .99997\)</span> with noise
+standard deviation <span class="math inline">\(\hat{\sigma} =
+5.009\text{ W}\)</span>, reducing residual sum of squares by four orders
+of magnitude relative to Model 4.</p>
+<h2 id="task-2.3-gaussian-log-likelihood-evaluation">Task 2.3: Gaussian
+Log-Likelihood Evaluation</h2>
+<p>Log-likelihood values were computed across all candidate models based
+on exact Gaussian densities (Table 7). Model 2 achieves <span
+class="math inline">\(\ln L = -30,299.9\)</span>, outperforming Model 1
+(<span class="math inline">\(\ln L = -81,853.8\)</span>), Model 3 (<span
+class="math inline">\(\ln L = -65,812.8\)</span>), and Model 4 (<span
+class="math inline">\(\ln L = -40,819.7\)</span>) by tens of thousands
+of log-likelihood units.</p>
+<h2
+id="task-2.4-information-theoretic-model-selection-aic-aicc-bic">Task
+2.4: Information-Theoretic Model Selection (AIC, AICc, BIC)</h2>
+<p>Model selection was conducted under an information-theoretic
+framework (<span class="math inline">\(\text{AIC} = 2k - 2\ln L,
+\text{BIC} = k\ln(N) - 2\ln L\)</span>, with <span
+class="math inline">\(k = p + 1\)</span>) (Table 9, Figure 10).</p>
+<p><strong>Table 9</strong><br />
+<em>Information Criteria Model Selection Summary and Posterior
+Probability Weights</em></p>
+<figure>
+<img src="tables/table9_model_selection_aic_bic.png"
+style="width:100.0%"
+alt="Table 9: Information Criteria Model Selection" />
+<figcaption aria-hidden="true">Table 9: Information Criteria Model
+Selection</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>.
+Parameter count <span class="math inline">\(k = p + 1\)</span> includes
+estimated residual variance <span
+class="math inline">\(\sigma^2\)</span>. <span
+class="math inline">\(\Delta\text{BIC} = 8.88\)</span> exceeds the Kass
+and Raftery (1995) threshold of <span
+class="math inline">\(6.0\)</span>, providing strong evidence for Model
+2.</p>
+<p>Model 2 attains lowest AIC (<span
+class="math inline">\(60,609.9\)</span>) and BIC (<span
+class="math inline">\(60,645.9\)</span>). The <span
+class="math inline">\(\Delta\text{BIC}\)</span> of <span
+class="math inline">\(8.88\)</span> for Model 5 confers <strong><span
+class="math inline">\(98.8\%\)</span> posterior probability</strong> to
+Model 2 over Model 5. Because Model 2 is nested within Model 5
+(restricting <span class="math inline">\(\theta_2 = 0\)</span> for <span
+class="math inline">\(x_1^2\)</span>), nested ANOVA (<span
+class="math inline">\(F = 0.328, p = .567\)</span>) and Likelihood Ratio
+tests (<span class="math inline">\(\text{LRT} = 0.328, p =
+.567\)</span>) confirm that the additional quadratic term is
+statistically indistinguishable from noise.</p>
+<p><strong>Figure 10</strong><br />
+<em>Model Selection via Information Criteria (AIC and BIC)</em></p>
+<figure>
+<img src="figures/fig10_aic_bic_model_selection.png" style="width:95.0%"
+alt="Figure 10: Model Selection Information Criteria" />
+<figcaption aria-hidden="true">Figure 10: Model Selection Information
+Criteria</figcaption>
+</figure>
+<p><em>Note.</em> Comparative profile of AIC and BIC across all
+candidate models, highlighting the decisive minimum achieved by Model
+2.</p>
+<h2 id="task-2.5-residual-diagnostics-and-normality-battery">Task 2.5:
+Residual Diagnostics and Normality Battery</h2>
+<p>To evaluate regression assumptions, a diagnostic testing battery was
+conducted on model residuals: Jarque-Bera (JB), Shapiro-Wilk (SW),
+Kolmogorov-Smirnov (KS), and Durbin-Watson (DW) for serial independence
+(Table 8, Figures 7–9).</p>
+<p><strong>Table 8</strong><br />
+<em>Residual Normality and Serial Independence Diagnostic Test
+Battery</em></p>
+<figure>
+<img src="tables/table8_residual_normality_tests.png"
+style="width:100.0%"
+alt="Table 8: Residual Normality Diagnostic Tests" />
+<figcaption aria-hidden="true">Table 8: Residual Normality Diagnostic
+Tests</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>.
+Durbin-Watson statistic <span class="math inline">\(d \approx
+2.0\)</span> confirms absence of serial correlation. Model 2 passes all
+normality tests (<span class="math inline">\(p &gt; .25\)</span> across
+JB, SW, and KS).</p>
+<p>The diagnostic battery proves that <strong>Model 2 fully satisfies
+Gaussian disturbance assumptions</strong>: * Kolmogorov-Smirnov <span
+class="math inline">\(p = .963\)</span> (<span class="math inline">\(D =
+0.0050\)</span>), Jarque-Bera <span class="math inline">\(p =
+.279\)</span> (<span class="math inline">\(\text{JB} = 2.6\)</span>),
+and Shapiro-Wilk <span class="math inline">\(p = .724\)</span> fail to
+reject Gaussianity. * Durbin-Watson statistic <span
+class="math inline">\(d = 2.013\)</span> confirms independent errors. *
+Models 1, 3, and 4 reject normality (<span class="math inline">\(p &lt;
+10^{-100}\)</span>), confirming functional misspecification.</p>
+<p><strong>Figure 7</strong><br />
+<em>Normal Q-Q Probability Plots Across Candidate Models 1 through
+5</em></p>
+<figure>
+<img src="figures/fig7_qq_plots_grid.png" style="width:95.0%"
+alt="Figure 7: Normal Q-Q Plots Across Candidate Models" />
+<figcaption aria-hidden="true">Figure 7: Normal Q-Q Plots Across
+Candidate Models</figcaption>
+</figure>
+<p><em>Note.</em> Quantile-quantile comparisons against theoretical
+normal quantiles. Model 2 residuals follow the 45-degree reference line
+across all quantiles.</p>
+<p><strong>Figure 8</strong><br />
+<em>Standardized Residual Histograms Overlaid with Theoretical Gaussian
+Probability Densities</em></p>
+<figure>
+<img src="figures/fig8_residual_histograms.png" style="width:95.0%"
+alt="Figure 8: Standardized Residual Histograms" />
+<figcaption aria-hidden="true">Figure 8: Standardized Residual
+Histograms</figcaption>
+</figure>
+<p><em>Note.</em> Standardized residuals for Model 2 demonstrate
+near-zero skewness and mesokurtic dispersion, in contrast to
+heavy-tailed misspecification in Models 1, 3, and 4.</p>
+<p><strong>Figure 9</strong><br />
+<em>Residuals vs. Fitted Values Across Candidate Models 1 through
+5</em></p>
+<figure>
+<img src="figures/fig9_residuals_vs_fitted.png" style="width:95.0%"
+alt="Figure 9: Residuals vs. Fitted Values Across Models" />
+<figcaption aria-hidden="true">Figure 9: Residuals vs. Fitted Values
+Across Models</figcaption>
+</figure>
+<p><em>Note.</em> Model 2 displays an ideal homoscedastic residual band
+around zero, confirming constant variance across the fitted power
+spectrum.</p>
+<h2 id="task-2.6-final-model-selection-and-justification">Task 2.6:
+Final Model Selection and Justification</h2>
+<p>Synthesizing information criteria, nested hypothesis tests, and
+residual diagnostic evaluations: 1. <strong>Parsimony and Penalized
+Likelihood:</strong> Model 2 minimizes both AIC (<span
+class="math inline">\(60,609.9\)</span>) and BIC (<span
+class="math inline">\(60,645.9\)</span>), yielding a decisive <span
+class="math inline">\(\Delta\text{BIC} = 8.88\)</span> over Model 5. 2.
+<strong>Residual Normality:</strong> Model 2 is the simplest model whose
+disturbances conform strictly to Gaussian distributions across all three
+formal hypothesis tests (<span class="math inline">\(KS\ p = .963, SW\ p
+= .724, JB\ p = .279\)</span>). 3. <strong>Physical Congruence:</strong>
+The parameters in Model 2 map directly to CMOS dynamic CPU power (<span
+class="math inline">\(x_1^3\)</span>), storage saturation (<span
+class="math inline">\(x_3^4\)</span>), network transfer energy (<span
+class="math inline">\(x_4\)</span>), and idle uncore dissipation (<span
+class="math inline">\(\theta_0\)</span>). Consequently, <strong>Model 2
+is definitively selected as the true model</strong>.</p>
+<h2
+id="task-2.7-out-of-sample-holdout-partitioning-and-95-prediction-intervals">Task
+2.7: Out-of-Sample Holdout Partitioning and 95% Prediction
+Intervals</h2>
+<p>To assess generalization, the dataset was partitioned into a
+<strong>70% training split</strong> (<span
+class="math inline">\(N_{train} = 7,000\)</span>) and a <strong>30%
+holdout testing split</strong> (<span class="math inline">\(N_{test} =
+3,000\)</span>) under seed <code>set.seed(42)</code>. Model 2 was
+trained exclusively on the 7,000 training observations (<span
+class="math inline">\(\hat{\theta}_0 = 120.076\text{ W}, \hat{\theta}_1
+= 4.479\text{ W/Gbps}, \hat{\theta}_2 = 1.20017\text{ W/GHz}^3,
+\hat{\theta}_3 = 0.80000\text{ W/IOPS}^4, \hat{\sigma}_{train} =
+5.036\text{ W}\)</span>).</p>
+<p>Analytical 95% prediction intervals were computed for unseen testing
+samples <span class="math inline">\(\mathbf{x}_*\)</span>: <span
+class="math display">\[\hat{y}_* \pm t_{crit, 0.975} \cdot
+\hat{\sigma}_{train} \sqrt{1 + \mathbf{\phi}_*^T
+(\mathbf{\Phi}_{train}^T \mathbf{\Phi}_{train})^{-1}
+\mathbf{\phi}_*}\]</span> where <span class="math inline">\(t_{crit,
+0.975} = 1.9603\)</span> for <span class="math inline">\(df =
+6,996\)</span>.</p>
+<p>Table 10 reports train versus test generalization metrics.</p>
+<p><strong>Table 10</strong><br />
+<em>Model 2 Generalization Performance and Out-of-Sample Prediction
+Coverage</em></p>
+<figure>
+<img src="tables/table10_train_test_generalization.png"
+style="width:100.0%"
+alt="Table 10: Holdout Generalization Performance" />
+<figcaption aria-hidden="true">Table 10: Holdout Generalization
+Performance</figcaption>
+</figure>
+<p><em>Note.</em> Evaluated under seed = 42. Exactly 2,864 out of 3,000
+unseen testing observations fall within analytical 95% prediction
+intervals (coverage = 95.47%), confirming exact calibration and zero
+overfitting.</p>
+<p>Test RMSE (<span class="math inline">\(4.948\text{ W}\)</span>) is
+slightly lower than training RMSE (<span
+class="math inline">\(5.035\text{ W}\)</span>), confirming zero
+overfitting. Crucially, <strong>exactly 2,864 out of 3,000 testing
+observations (95.47%)</strong> fall within the theoretical 95%
+prediction intervals (Figure 11).</p>
+<p><strong>Figure 11</strong><br />
+<em>Out-of-Sample Model Predictions with 95% Confidence Intervals
+Plotted Against Observed Test Data Samples</em></p>
+<figure>
+<img src="figures/fig11_test_prediction_intervals.png"
+style="width:95.0%"
+alt="Figure 11: Out-of-Sample Model Predictions and Prediction Intervals" />
+<figcaption aria-hidden="true">Figure 11: Out-of-Sample Model
+Predictions and Prediction Intervals</figcaption>
+</figure>
+<p><em>Note.</em> Top: Test set predictions overlaid on observed power.
+Bottom left: 100-sample zoom with analytical 95% prediction intervals.
+Bottom right: Empirical error distribution with nominal 95% coverage
+bounds.</p>
+<hr />
+<h1 id="task-3-approximate-bayesian-computation-abc">Task 3: Approximate
+Bayesian Computation (ABC)</h1>
+<h2 id="task-3.1-dominant-parameter-identification">Task 3.1: Dominant
+Parameter Identification</h2>
+<p>Task 3 implements likelihood-free parameter inference via
+<strong>Rejection Approximate Bayesian Computation (ABC)</strong> for
+Model 2. Following the assignment brief, the <strong>two parameters with
+largest absolute magnitude</strong> from least squares estimation in
+Task 2.1 were selected for Bayesian estimation, while remaining
+parameters were fixed as constants: 1. <span
+class="math inline">\(\theta_0\)</span> (Static Intercept): <span
+class="math inline">\(|\hat{\theta}_0| = \mathbf{120.0221\text{
+W}}\)</span> (<strong>Rank 1 — Largest Magnitude</strong>) 2. <span
+class="math inline">\(\theta_1\)</span> (Network Throughput Coefficient
+<span class="math inline">\(x_4\)</span>): <span
+class="math inline">\(|\hat{\theta}_1| = \mathbf{4.4805\text{
+W/Gbps}}\)</span> (<strong>Rank 2 — Second Largest</strong>) 3. <span
+class="math inline">\(\theta_2\)</span> (CPU Cubic Term <span
+class="math inline">\(x_1^3\)</span>): <span
+class="math inline">\(|\hat{\theta}_2| = 1.2002\text{ W/GHz}^3\)</span>
+(Rank 3; fixed at <span class="math inline">\(\theta_2^* =
+1.20018440\)</span>) 4. <span class="math inline">\(\theta_3\)</span>
+(Storage Quartic Term <span class="math inline">\(x_3^4\)</span>): <span
+class="math inline">\(|\hat{\theta}_3| = 0.8000\text{ W/IOPS}^4\)</span>
+(Rank 4; fixed at <span class="math inline">\(\theta_3^* =
+0.80000257\)</span>)</p>
+<h2 id="task-3.2-prior-distribution-formulation-and-justification">Task
+3.2: Prior Distribution Formulation and Justification</h2>
+<p>Independent continuous uniform priors were established around point
+estimates: <span class="math display">\[p(\boldsymbol{\theta}) =
+p(\theta_0) \cdot p(\theta_1), \quad \theta_0 \sim \mathcal{U}[115.0,
+125.0]\text{ W}, \quad \theta_1 \sim \mathcal{U}[3.5, 5.5]\text{
+W/Gbps}\]</span></p>
+<p>The prior bounds were justified on theoretical and physical
+principles: * <strong>Standard Error Span:</strong> For <span
+class="math inline">\(\theta_0\)</span>, the range width of <span
+class="math inline">\(10.0\text{ W}\)</span> spans <strong><span
+class="math inline">\(102.3 \times SE_{OLS}\)</span></strong> (<span
+class="math inline">\(SE = 0.0978\text{ W}\)</span>). For <span
+class="math inline">\(\theta_1\)</span>, the width of <span
+class="math inline">\(2.0\text{ W/Gbps}\)</span> spans <strong><span
+class="math inline">\(119.8 \times SE_{OLS}\)</span></strong> (<span
+class="math inline">\(SE = 0.0167\text{ W/Gbps}\)</span>). *
+<strong>Maximum Entropy Formulation:</strong> Uniform distributions
+represent maximum-entropy uninformative priors over bounded domains
+(Jaynes, 1968). Because prior spans exceed 100 standard errors,
+posteriors are entirely data-driven. * <strong>Physical
+Plausibility:</strong> Enterprise rack servers exhibit base idle power
+between <span class="math inline">\(110\text{ W}\)</span> and <span
+class="math inline">\(130\text{ W}\)</span>, while 10/25 GbE network
+interfaces draw between <span class="math inline">\(3.5\)</span> and
+<span class="math inline">\(5.5\text{ W}\)</span> per Gbps of sustained
+throughput.</p>
+<h2 id="task-3.3-high-performance-rejection-abc-engine">Task 3.3:
+High-Performance Rejection ABC Engine</h2>
+<p>In Rejection ABC, candidate parameter vectors <span
+class="math inline">\(\boldsymbol{\theta}^* = (\theta_0^*,
+\theta_1^*)\)</span> are sampled from the prior and accepted if the
+distance <span class="math inline">\(d_{RMSE}(\mathbf{y},
+\hat{\mathbf{y}}(\boldsymbol{\theta}^*)) \le \epsilon\)</span>. To
+simulate <span class="math inline">\(N_{sim} = 200,000\)</span> draws
+without memory bottlenecks, an algebraic reduction of the residual sum
+of squares was derived: <span class="math display">\[\mathbf{y}_{target}
+= \mathbf{y} - (\theta_2^* \mathbf{x}_1^3 + \theta_3^*
+\mathbf{x}_3^4)\]</span> <span
+class="math display">\[\text{RSS}(\theta_0^*, \theta_1^*) = \sum
+y_{target}^2 + N(\theta_0^*)^2 + (\theta_1^*)^2 \sum x_4^2 - 2\theta_0^*
+\sum y_{target} - 2\theta_1^* \sum (x_4 y_{target}) +
+2\theta_0^*\theta_1^* \sum x_4\]</span></p>
+<p>This formulation enabled simulating <span
+class="math inline">\(200,000\)</span> candidate draws in <strong><span
+class="math inline">\(0.04\text{ seconds}\)</span></strong> (<span
+class="math inline">\(5,500,000\text{ draws/second}\)</span>) in pure R
+under <code>set.seed(42)</code>. Multi-tolerance sensitivity was
+evaluated across four quantiles: <span class="math inline">\(\alpha \in
+\{5.0\%, 2.0\%, 1.0\%, 0.5\%\}\)</span>. Primary inference was conducted
+at <span class="math inline">\(\alpha = 0.5\%\)</span> (<span
+class="math inline">\(N_{accepted} = 1,000\)</span> draws),
+corresponding to <span class="math inline">\(\epsilon = 5.0173\text{
+W}\)</span>—within <span class="math inline">\(0.009\text{ W}\)</span>
+of the theoretical OLS minimum (<span
+class="math inline">\(\hat{\sigma}_{ML} = 5.0081\text{ W}\)</span>).</p>
+<h2 id="task-3.4-joint-and-marginal-posterior-distributions">Task 3.4:
+Joint and Marginal Posterior Distributions</h2>
+<p>Posterior moments were computed for accepted draws: Mean, Median,
+Mode (via 1D Gaussian kernel density peak), Standard Deviation (<span
+class="math inline">\(SD_{post}\)</span>), and 95% Highest Posterior
+Density Intervals (HPDI) via non-parametric shortest-interval
+optimization (Table 11).</p>
+<p><strong>Table 11</strong><br />
+<em>Comparison of Frequentist Ordinary Least Squares and Bayesian ABC
+Posterior Estimations</em></p>
+<figure>
+<img src="tables/table11_frequentist_vs_bayesian_comparison.png"
+style="width:100.0%"
+alt="Table 11: Bayesian vs Frequentist Comparison" />
+<figcaption aria-hidden="true">Table 11: Bayesian vs Frequentist
+Comparison</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>
+observed samples; <span class="math inline">\(N_{sim} = 200,000\)</span>
+simulation draws; primary tolerance quantile <span
+class="math inline">\(\alpha = 0.5\%\)</span> (<span
+class="math inline">\(N_{accepted} = 1,000\)</span> draws). Fixed
+parameters: <span class="math inline">\(\theta_2 = 1.200184\text{
+W/GHz}^3\)</span>, <span class="math inline">\(\theta_3 = 0.800003\text{
+W/IOPS}^4\)</span>. Relative difference is computed as <span
+class="math inline">\(|\text{Mean}_{Bayes} - \hat{\theta}_{OLS}| /
+\hat{\theta}_{OLS} \times 100\%\)</span>.</p>
+<p>Table 12 reports tolerance sensitivity and posterior contraction
+across all four tolerance levels.</p>
+<p><strong>Table 12</strong><br />
+<em>ABC Tolerance Sensitivity and Posterior Variance Contraction Across
+Tolerance Quantiles</em></p>
+<figure>
+<img src="tables/table12_abc_tolerance_sensitivity.png"
+style="width:100.0%" alt="Table 12: ABC Tolerance Sensitivity" />
+<figcaption aria-hidden="true">Table 12: ABC Tolerance
+Sensitivity</figcaption>
+</figure>
+<p><em>Note.</em> <span class="math inline">\(N = 10,000\)</span>. As
+tolerance <span class="math inline">\(\alpha\)</span> tightens from 5.0%
+to 0.5%, the RMSE threshold approaches the theoretical OLS minimum of
+<span class="math inline">\(5.0081\text{ W}\)</span>, and posterior
+standard deviations contract monotonically.</p>
+<p>Figures 12, 13, and 14 display marginal posterior distributions, the
+bivariate joint posterior distribution with 95% confidence ellipse, and
+tolerance convergence curves.</p>
+<p><strong>Figure 12</strong><br />
+<em>Marginal Posterior Probability Distributions for Intercept and
+Network Parameters with 95% HPDI Intervals</em></p>
+<figure>
+<img src="figures/fig12_abc_marginal_posteriors.png" style="width:95.0%"
+alt="Figure 12: Marginal Posterior Probability Distributions" />
+<figcaption aria-hidden="true">Figure 12: Marginal Posterior Probability
+Distributions</figcaption>
+</figure>
+<p><em>Note.</em> Posterior densities for <span
+class="math inline">\(\theta_0\)</span> (left) and <span
+class="math inline">\(\theta_1\)</span> (right) at <span
+class="math inline">\(\alpha = 0.5\%\)</span>. Orange vertical bars
+indicate 95% Highest Posterior Density Intervals (HPDI); dashed black
+lines denote OLS point estimates.</p>
+<p><strong>Figure 13</strong><br />
+<em>Joint Posterior Probability Distribution with Bivariate Contours and
+95% Confidence Ellipse</em></p>
+<figure>
+<img src="figures/fig13_abc_joint_posterior.png" style="width:95.0%"
+alt="Figure 13: Joint Posterior Probability Distribution" />
+<figcaption aria-hidden="true">Figure 13: Joint Posterior Probability
+Distribution</figcaption>
+</figure>
+<p><em>Note.</em> Bivariate scatter plot of accepted parameter pairs
+showing negative posterior coupling (<span class="math inline">\(r =
+-0.722\)</span>), overlaid with 2D density contours, 95% confidence
+ellipse, and OLS point estimate (red diamond).</p>
+<p><strong>Figure 14</strong><br />
+<em>ABC Tolerance Sensitivity and Posterior Contraction across
+Acceptance Thresholds</em></p>
+<figure>
+<img src="figures/fig14_abc_tolerance_convergence.png"
+style="width:95.0%"
+alt="Figure 14: ABC Tolerance Sensitivity and Posterior Contraction" />
+<figcaption aria-hidden="true">Figure 14: ABC Tolerance Sensitivity and
+Posterior Contraction</figcaption>
+</figure>
+<p><em>Note.</em> Left: Acceptance thresholds across quantiles. Center
+&amp; Right: Monotonic contraction of posterior standard deviations
+toward OLS standard error bounds as tolerance approaches zero.</p>
+<h2 id="task-3.5-tolerance-sensitivity-and-posterior-contraction">Task
+3.5: Tolerance Sensitivity and Posterior Contraction</h2>
+<p>Multi-tolerance evaluation across <span class="math inline">\(\alpha
+\in \{5.0\%, 2.0\%, 1.0\%, 0.5\%\}\)</span> demonstrates systematic
+posterior variance contraction (Table 12, Figure 14). As tolerance
+quantile <span class="math inline">\(\alpha\)</span> tightens from <span
+class="math inline">\(5.0\%\)</span> to <span
+class="math inline">\(0.5\%\)</span>, the RMSE distance threshold
+decreases from <span class="math inline">\(5.1020\text{ W}\)</span> to
+<span class="math inline">\(5.0173\text{ W}\)</span>, closely
+approaching the theoretical OLS minimum (<span
+class="math inline">\(\hat{\sigma}_{ML} = 5.0081\text{ W}\)</span>).
+Concurrently, posterior standard deviations contract monotonically from
+<span class="math inline">\(0.6868\text{ W}\)</span> to <span
+class="math inline">\(0.2227\text{ W}\)</span> for <span
+class="math inline">\(\theta_0\)</span>, and from <span
+class="math inline">\(0.1615\)</span> to <span
+class="math inline">\(0.0519\text{ W/Gbps}\)</span> for <span
+class="math inline">\(\theta_1\)</span>. This empirical progression
+verifies the foundational theorem of ABC: as acceptance tolerance
+approaches zero (<span class="math inline">\(\epsilon \to 0\)</span>),
+the approximate posterior distribution <span
+class="math inline">\(p(\boldsymbol{\theta} \mid d \le
+\epsilon)\)</span> converges asymptotically to the true posterior
+distribution <span class="math inline">\(p(\boldsymbol{\theta} \mid
+\mathbf{y})\)</span>.</p>
+<hr />
+<h1 id="discussion">Discussion</h1>
+<h2 id="physical-architecture-and-hardware-mapping">Physical
+Architecture and Hardware Mapping</h2>
+<p>The statistical parameters identified in Model 2 map directly to
+physical server architecture: * <strong>Static Baseline Power (<span
+class="math inline">\(\hat{\theta}_0 \approx 120.02\text{
+W}\)</span>):</strong> Captures baseline dissipation when workload
+activity is zero (<span class="math inline">\(x_1 = x_3 = x_4 =
+0\)</span>), encompassing motherboard uncore power, semiconductor
+sub-threshold leakage, DRAM background refresh, PSU conversion loss, and
+base cooling fan rotation. * <strong>Network Dynamic Power (<span
+class="math inline">\(\hat{\theta}_1 \approx 4.48\text{
+W/Gbps}\)</span>):</strong> Quantifies dynamic power per gigabit of
+throughput, reflecting physical layer (PHY) SerDes transceivers, packet
+buffering, PCIe bus transactions, and DMA memory transfers. *
+<strong>Cubic Processor Scaling (<span
+class="math inline">\(\hat{\theta}_2 \approx 1.200\text{
+W/GHz}^3\)</span>):</strong> Represents dynamic CPU scaling under CMOS
+DVFS protocol. Because dynamic power scales cubically with operational
+frequency (<span class="math inline">\(P \propto V_{dd}^2 f \propto
+f^3\)</span>), this cubic term governs the steep surge in dissipation as
+CPU clock frequencies scale toward turbo limits (<span
+class="math inline">\(x_1 \to 8.0\text{ GHz}\)</span>). *
+<strong>Quartic Storage Saturation (<span
+class="math inline">\(\hat{\theta}_3 \approx 0.8000\text{
+W/IOPS}^4\)</span>):</strong> Captures severe non-linear power
+escalation under queue saturation in solid-state and magnetic drive
+arrays, driven by parallel NAND channel activation, flash translation
+layer (FTL) caching, wear leveling, write amplification, and
+supplementary enclosure cooling.</p>
+<h2
+id="negative-parameter-coupling-and-joint-posterior-geometry">Negative
+Parameter Coupling and Joint Posterior Geometry</h2>
+<p>As established in Task 3, the joint posterior distribution exhibits
+an empirical correlation of <strong><span
+class="math inline">\(r(\theta_0, \theta_1) = -0.722\)</span></strong>
+(Figure 13). This parameter coupling arises from structural mathematical
+and physical constraints: * <strong>Algebraic Derivation:</strong> In
+design matrix <span class="math inline">\(\mathbf{\Phi}\)</span>, the
+column for <span class="math inline">\(\theta_0\)</span> is the unit
+vector <span class="math inline">\(\mathbf{1}\)</span>, and the column
+for <span class="math inline">\(\theta_1\)</span> is network throughput
+<span class="math inline">\(\mathbf{x}_4\)</span>. Because network load
+is strictly non-negative (<span class="math inline">\(x_4 \ge 0,
+\bar{x}_4 = 3.01\text{ Gbps}\)</span>), the off-diagonal Gram matrix
+element is positive: <span
+class="math display">\[(\mathbf{\Phi}^T\mathbf{\Phi})_{0,1} =
+\sum_{i=1}^N 1 \cdot x_{4,i} = 30,105 &gt; 0\]</span> Matrix inversion
+induces a negative off-diagonal covariance entry: <span
+class="math display">\[\text{Cov}(\theta_0, \theta_1) =
+-\frac{\bar{x}_4}{\sum (x_{4,i} - \bar{x}_4)^2}\sigma^2 &lt; 0\]</span>
+evaluating to a theoretical Frequentist correlation of <span
+class="math inline">\(-0.5141\)</span>. * <strong>Physical
+Mechanism:</strong> Observed server power has a fixed sample mean.
+During simulation, if candidate network coefficient <span
+class="math inline">\(\theta_1^*\)</span> is sampled above its true
+value, it over-predicts dynamic power for positive network states (<span
+class="math inline">\(x_4 &gt; 0\)</span>). To minimize residual sum of
+squares against observed power, intercept <span
+class="math inline">\(\theta_0^*\)</span> must compensate downward,
+generating the tilted bivariate posterior ellipse.</p>
+<h2
+id="asymptotic-equivalence-and-epistemic-paradigm-comparison">Asymptotic
+Equivalence and Epistemic Paradigm Comparison</h2>
+<p>The empirical convergence between Frequentist OLS and Bayesian ABC
+validates the Bernstein-von Mises Theorem, establishing that
+likelihood-free ABC methods converge exactly to analytical MLE estimates
+under sufficient sample size (<span class="math inline">\(N =
+10,000\)</span>). While Frequentist intervals reflect asymptotic
+coverage under hypothetical resampling, Bayesian HPDIs provide facility
+operators with direct actionable probabilities conditioned on the single
+observed dataset.</p>
+<h2 id="operational-applications-and-limitations">Operational
+Applications and Limitations</h2>
+<p>Model 2 provides direct actionable utility for enterprise data
+centers: 1. <strong>Dynamic Power Capping:</strong> Facilitates
+real-time power tracking with <span
+class="math inline">\(99.997\%\)</span> precision (<span
+class="math inline">\(\text{RMSE} &lt; 5.0\text{ W}\)</span>), allowing
+facilities to operate within 2% of breaker limits without tripping. 2.
+<strong>Workload Consolidation:</strong> The cubic CPU parameter (<span
+class="math inline">\(\theta_2 = 1.200\)</span>) demonstrates that
+spreading load across multiple cores running at moderate clock speeds
+uses substantially less power than driving a single core into maximum
+turbo frequency. 3. <strong>Thermal Management:</strong> Strong
+storage-power coupling (<span class="math inline">\(r = .9784\)</span>)
+pinpoints disk arrays as primary thermal hot-spots requiring localized
+cooling.</p>
+<p>Future work should integrate ambient temperature telemetry (<span
+class="math inline">\(I_{leak} \propto T^2\)</span>) and transition to
+Sequential Monte Carlo ABC (ABC-SMC) for higher-dimensional
+topologies.</p>
+<hr />
+<h1 id="conclusion">Conclusion</h1>
+<p>This coursework formulated, evaluated, and validated an end-to-end
+statistical modeling framework for enterprise cloud server power
+consumption: 1. <strong>Task 1 Preliminary Analysis:</strong> Verified
+stationarity across 10,000 synchronized observations, identified
+parametric distributions (uniform <span class="math inline">\(x_1,
+x_2\)</span>; Gaussian <span class="math inline">\(x_3\)</span>;
+exponential <span class="math inline">\(x_4\)</span>), confirmed
+predictor orthogonality (<span class="math inline">\(\text{VIF} \approx
+1.000\)</span>), and demonstrated baseline linear model failure (<span
+class="math inline">\(R^2 = .0342\)</span>). 2. <strong>Task 2
+Regression Modeling:</strong> Estimated five polynomial models via QR
+decomposition. Information criteria (<span
+class="math inline">\(\text{AIC} = 60,609.9, \text{BIC} =
+60,645.9\)</span>), nested ANOVA (<span class="math inline">\(p =
+.567\)</span>), and a comprehensive normality battery (KS <span
+class="math inline">\(p = .963\)</span>, JB <span
+class="math inline">\(p = .279\)</span>, SW <span
+class="math inline">\(p = .724\)</span>) selected Model 2 (<span
+class="math inline">\(y = \theta_0 + \theta_1 x_4 + \theta_2 x_1^3 +
+\theta_3 x_3^4 + \epsilon\)</span>) as the true data-generating process
+(<span class="math inline">\(R^2 = .99997, \hat{\sigma} = 5.009\text{
+W}\)</span>). Out-of-sample holdout validation (<span
+class="math inline">\(N = 3,000\)</span>) achieved 95.47% empirical
+prediction coverage. 3. <strong>Task 3 Approximate Bayesian
+Computation:</strong> Executed vectorized Rejection ABC (<span
+class="math inline">\(200,000\)</span> draws) on the two dominant
+parameters (<span class="math inline">\(\theta_0\)</span> and <span
+class="math inline">\(\theta_1\)</span>). Posterior means converged to
+within <span class="math inline">\(0.05\%\)</span> of OLS, confirming
+Bernstein-von Mises asymptotic equivalence, while explaining negative
+parameter coupling (<span class="math inline">\(r = -0.722\)</span>)
+driven by non-negative network throughput.</p>
+<p>The reproducible pipeline, publication figures, and empirical models
+provide a publication-grade foundation for data center energy
+optimization.</p>
+<hr />
+<h1 id="references">References</h1>
+<ul>
+<li>Akaike, H. (1974). A new look at the statistical model
+identification. <em>IEEE Transactions on Automatic Control</em>, 19(6),
+716–723. https://doi.org/10.1109/TAC.1974.1100705</li>
+<li>Barroso, L. A., Hölzle, U., &amp; Ranganathan, P. (2018). <em>The
+Datacenter as a Computer: Designing Warehouse-Scale Machines</em> (3rd
+ed.). Morgan &amp; Claypool Publishers.
+https://doi.org/10.2200/S00874ED3V01Y201809CAC046</li>
+<li>Beaumont, M. A., Zhang, W., &amp; Balding, D. J. (2002). Approximate
+Bayesian computation in population genetics. <em>Genetics</em>, 162(4),
+2025–2035. https://doi.org/10.1093/genetics/162.4.2025</li>
+<li>Box, G. E., &amp; Cox, D. R. (1964). An analysis of transformations.
+<em>Journal of the Royal Statistical Society: Series B
+(Methodological)</em>, 26(2), 211–243.
+https://doi.org/10.1111/j.2517-6161.1964.tb00553.x</li>
+<li>Burnham, K. P., &amp; Anderson, D. R. (2002). <em>Model Selection
+and Multimodel Inference: A Practical Information-Theoretic
+Approach</em> (2nd ed.). Springer-Verlag.</li>
+<li>Chen, M. H., &amp; Shao, Q. M. (1999). Monte Carlo estimation of
+Bayesian credible and HPD intervals. <em>Journal of Computational and
+Graphical Statistics</em>, 8(1), 69–92.
+https://doi.org/10.1080/10618600.1999.10474802</li>
+<li>Durbin, J., &amp; Watson, G. S. (1950). Testing for serial
+correlation in least squares regression: I. <em>Biometrika</em>,
+37(3/4), 409–428. https://doi.org/10.2307/2332388</li>
+<li>Golub, G. H., &amp; Van Loan, C. F. (2013). <em>Matrix
+Computations</em> (4th ed.). Johns Hopkins University Press.</li>
+<li>Jarque, C. M., &amp; Bera, A. K. (1987). A test for normality of
+observations and regression residuals. <em>International Statistical
+Review</em>, 55(2), 163–172. https://doi.org/10.2307/1403192</li>
+<li>Jaynes, E. T. (1968). Prior probabilities. <em>IEEE Transactions on
+Systems Science and Cybernetics</em>, 4(3), 227–241.
+https://doi.org/10.1109/TSSC.1968.300117</li>
+<li>Kass, R. E., &amp; Raftery, A. E. (1995). Bayes factors. <em>Journal
+of the American Statistical Association</em>, 90(430), 773–795.
+https://doi.org/10.1080/01621459.1995.10476572</li>
+<li>Kolmogorov, A. N. (1933). Sulla determinazione empirica di una legge
+di distribuzione. <em>Giornale dell’Istituto Italiano degli
+Attuari</em>, 4, 83–91.</li>
+<li>McElreath, R. (2020). <em>Statistical Rethinking: A Bayesian Course
+with Examples in R and Stan</em> (2nd ed.). Chapman and Hall/CRC.
+https://doi.org/10.1201/9780429029608</li>
+<li>Pritchard, J. K., Seielstad, M. T., Perez-Lezaun, A., &amp; Feldman,
+M. W. (1999). Population growth of human Y chromosomes: A study of Y
+chromosome microsatellites. <em>Molecular Biology and Evolution</em>,
+16(12), 1791–1798.
+https://doi.org/10.1093/oxfordjournals.molbev.a026091</li>
+<li>Rabaey, J. M., Chandrakasan, A., &amp; Nikolic, B. (2003).
+<em>Digital Integrated Circuits: A Design Perspective</em> (2nd ed.).
+Prentice Hall.</li>
+<li>Schwarz, G. (1978). Estimating the dimension of a model. <em>The
+Annals of Statistics</em>, 6(2), 461–464.
+https://doi.org/10.1214/aos/1176344136</li>
+<li>Shapiro, S. S., &amp; Wilk, M. B. (1965). An analysis of variance
+test for normality (complete samples). <em>Biometrika</em>, 52(3/4),
+591–611. https://doi.org/10.1093/biomet/52.3-4.591</li>
+<li>Sisson, S. A., Fan, Y., &amp; Beaumont, M. (Eds.). (2018).
+<em>Handbook of Approximate Bayesian Computation</em>. CRC Press.
+https://doi.org/10.1201/9781315117195</li>
+<li>Tavaré, S., Balding, D. J., Griffiths, R. C., &amp; Donnelly, P.
+(1997). Inferring coalescence times from DNA sequence data.
+<em>Genetics</em>, 145(2), 505–518.
+https://doi.org/10.1093/genetics/145.2.505</li>
+<li>Van der Vaart, A. W. (2000). <em>Asymptotic Statistics</em> (Vol.
+3). Cambridge University Press.
+https://doi.org/10.1017/CBO9780511802256</li>
+<li>Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data
+Analysis</em>. Springer-Verlag.
+https://doi.org/10.1007/978-3-319-24277-4</li>
+</ul>
+<hr />
+<h1 id="appendices">Appendices</h1>
+<p>All R programming scripts were authored specifically for this
+research, adhering to modular programming standards. The master pipeline
+can be executed via <code>Rscript scripts/run_all.R</code>.</p>
+<h2
+id="appendix-a-task-1-preliminary-data-analysis-engine-r01_eda_functions.r">Appendix
+A: Task 1 Preliminary Data Analysis Engine
+(<code>R/01_eda_functions.R</code>)</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 1: Preliminary Data Analysis Engine</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Module: STW7089CEM Introduction to Statistical Methods for Data Science</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(patchwork)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Compute non-parametric and parametric descriptive moments</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>compute_descriptive_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(df, <span class="at">exclude_cols =</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>)) {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  num_cols <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(df), exclude_cols)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  stats_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(num_cols, <span class="cf">function</span>(col) {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> df[[col]]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    mdn <span class="ot">&lt;-</span> <span class="fu">median</span>(x)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    iqr_val <span class="ot">&lt;-</span> <span class="fu">IQR</span>(x)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> (x <span class="sc">-</span> m) <span class="sc">/</span> s</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    skew <span class="ot">&lt;-</span> (n <span class="sc">/</span> ((n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">2</span>))) <span class="sc">*</span> <span class="fu">sum</span>(z<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    kurt <span class="ot">&lt;-</span> ((n <span class="sc">*</span> (n <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">/</span> ((n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">2</span>) <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">3</span>))) <span class="sc">*</span> <span class="fu">sum</span>(z<span class="sc">^</span><span class="dv">4</span>) <span class="sc">-</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            (<span class="dv">3</span> <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> ((n <span class="sc">-</span> <span class="dv">2</span>) <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">3</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">Variable =</span> col, <span class="at">Mean =</span> m, <span class="at">Median =</span> mdn, <span class="at">SD =</span> s,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">Variance =</span> s<span class="sc">^</span><span class="dv">2</span>, <span class="at">IQR =</span> iqr_val, <span class="at">Skewness =</span> skew, <span class="at">Excess_Kurtosis =</span> kurt</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do.call</span>(rbind, stats_list)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Formal Kolmogorov-Smirnov distribution tests</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>test_distribution_families <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  ks_x1 <span class="ot">&lt;-</span> <span class="fu">ks.test</span>(df<span class="sc">$</span>x1, <span class="st">&quot;punif&quot;</span>, <span class="at">min =</span> <span class="fl">1.0</span>, <span class="at">max =</span> <span class="fl">8.0</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  ks_x2 <span class="ot">&lt;-</span> <span class="fu">ks.test</span>(df<span class="sc">$</span>x2, <span class="st">&quot;punif&quot;</span>, <span class="at">min =</span> <span class="fl">2.0</span>, <span class="at">max =</span> <span class="fl">9.0</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  ks_x3 <span class="ot">&lt;-</span> <span class="fu">ks.test</span>(df<span class="sc">$</span>x3, <span class="st">&quot;pnorm&quot;</span>, <span class="at">mean =</span> <span class="fu">mean</span>(df<span class="sc">$</span>x3), <span class="at">sd =</span> <span class="fu">sd</span>(df<span class="sc">$</span>x3))</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  ks_x4 <span class="ot">&lt;-</span> <span class="fu">ks.test</span>(df<span class="sc">$</span>x4, <span class="st">&quot;pexp&quot;</span>, <span class="at">rate =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">mean</span>(df<span class="sc">$</span>x4))</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>, <span class="st">&quot;x3&quot;</span>, <span class="st">&quot;x4&quot;</span>),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">Hypothesis =</span> <span class="fu">c</span>(<span class="st">&quot;Uniform U[1, 8]&quot;</span>, <span class="st">&quot;Uniform U[2, 9]&quot;</span>, <span class="st">&quot;Gaussian Normal&quot;</span>, <span class="st">&quot;Exponential&quot;</span>),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">KS_Stat =</span> <span class="fu">c</span>(ks_x1<span class="sc">$</span>statistic, ks_x2<span class="sc">$</span>statistic, ks_x3<span class="sc">$</span>statistic, ks_x4<span class="sc">$</span>statistic),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_value =</span> <span class="fu">c</span>(ks_x1<span class="sc">$</span>p.value, ks_x2<span class="sc">$</span>p.value, ks_x3<span class="sc">$</span>p.value, ks_x4<span class="sc">$</span>p.value)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2
+id="appendix-b-task-2-regression-engine-and-diagnostics-r02_regression_engine.r">Appendix
+B: Task 2 Regression Engine and Diagnostics
+(<code>R/02_regression_engine.R</code>)</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 2: Polynomial Regression Engine and Parameter Estimation</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Construct polynomial design matrices for candidate models 1 to 5</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>build_design_matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(df, model_id) {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> df<span class="sc">$</span>x1; x2 <span class="ot">&lt;-</span> df<span class="sc">$</span>x2; x3 <span class="ot">&lt;-</span> df<span class="sc">$</span>x3; x4 <span class="ot">&lt;-</span> df<span class="sc">$</span>x4</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (model_id <span class="sc">==</span> <span class="st">&quot;Model1&quot;</span>) {</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="at">Intercept =</span> <span class="dv">1</span>, <span class="at">x4 =</span> x4, <span class="at">x1_sq =</span> x1<span class="sc">^</span><span class="dv">2</span>, <span class="at">x1_cube =</span> x1<span class="sc">^</span><span class="dv">3</span>, <span class="at">x2_quad =</span> x2<span class="sc">^</span><span class="dv">4</span>, <span class="at">x1_quad =</span> x1<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (model_id <span class="sc">==</span> <span class="st">&quot;Model2&quot;</span>) {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="at">Intercept =</span> <span class="dv">1</span>, <span class="at">x4 =</span> x4, <span class="at">x1_cube =</span> x1<span class="sc">^</span><span class="dv">3</span>, <span class="at">x3_quad =</span> x3<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (model_id <span class="sc">==</span> <span class="st">&quot;Model3&quot;</span>) {</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="at">Intercept =</span> <span class="dv">1</span>, <span class="at">x3_cube =</span> x3<span class="sc">^</span><span class="dv">3</span>, <span class="at">x3_quad =</span> x3<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (model_id <span class="sc">==</span> <span class="st">&quot;Model4&quot;</span>) {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="at">Intercept =</span> <span class="dv">1</span>, <span class="at">x2 =</span> x2, <span class="at">x1_cube =</span> x1<span class="sc">^</span><span class="dv">3</span>, <span class="at">x3_quad =</span> x3<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (model_id <span class="sc">==</span> <span class="st">&quot;Model5&quot;</span>) {</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="at">Intercept =</span> <span class="dv">1</span>, <span class="at">x4 =</span> x4, <span class="at">x1_sq =</span> x1<span class="sc">^</span><span class="dv">2</span>, <span class="at">x1_cube =</span> x1<span class="sc">^</span><span class="dv">3</span>, <span class="at">x3_quad =</span> x3<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Fit polynomial regression via QR decomposition and Normal Equations</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>fit_polynomial_model <span class="ot">&lt;-</span> <span class="cf">function</span>(Phi, y, <span class="at">model_id =</span> <span class="st">&quot;Model2&quot;</span>) {</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">length</span>(y); p <span class="ot">&lt;-</span> <span class="fu">ncol</span>(Phi); df_resid <span class="ot">&lt;-</span> N <span class="sc">-</span> p</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Normal Equations</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  theta_normal <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">solve</span>(<span class="fu">t</span>(Phi) <span class="sc">%*%</span> Phi) <span class="sc">%*%</span> (<span class="fu">t</span>(Phi) <span class="sc">%*%</span> y))</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># QR Decomposition</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  qr_decomp <span class="ot">&lt;-</span> <span class="fu">qr</span>(Phi)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  theta_qr <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">qr.solve</span>(qr_decomp, y))</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Residuals and Variance</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  y_hat <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(Phi <span class="sc">%*%</span> theta_qr)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  residuals <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(y <span class="sc">-</span> y_hat)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  RSS <span class="ot">&lt;-</span> <span class="fu">sum</span>(residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  sigma2_unbiased <span class="ot">&lt;-</span> RSS <span class="sc">/</span> df_resid</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  sigma2_ml <span class="ot">&lt;-</span> RSS <span class="sc">/</span> N</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Gaussian Log-Likelihood</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  log_likelihood_ml <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.5</span> <span class="sc">*</span> N <span class="sc">*</span> (<span class="fu">log</span>(<span class="dv">2</span> <span class="sc">*</span> pi <span class="sc">*</span> sigma2_ml) <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Parameter Covariance and Standard Errors</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  R_mat <span class="ot">&lt;-</span> <span class="fu">qr.R</span>(qr_decomp)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  cov_theta <span class="ot">&lt;-</span> sigma2_unbiased <span class="sc">*</span> <span class="fu">chol2inv</span>(R_mat)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  se_theta <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(cov_theta))</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  t_stat <span class="ot">&lt;-</span> theta_qr <span class="sc">/</span> se_theta</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  p_values <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> stats<span class="sc">::</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t_stat), <span class="at">df =</span> df_resid)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">model_id =</span> model_id, <span class="at">theta =</span> theta_qr, <span class="at">se_theta =</span> se_theta,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">RSS =</span> RSS, <span class="at">RMSE =</span> <span class="fu">sqrt</span>(RSS <span class="sc">/</span> N), <span class="at">R2 =</span> <span class="dv">1</span> <span class="sc">-</span> (RSS <span class="sc">/</span> <span class="fu">sum</span>((y <span class="sc">-</span> <span class="fu">mean</span>(y))<span class="sc">^</span><span class="dv">2</span>)),</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">sigma_unbiased =</span> <span class="fu">sqrt</span>(sigma2_unbiased), <span class="at">log_likelihood_ml =</span> log_likelihood_ml,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">residuals =</span> residuals, <span class="at">fitted_values =</span> y_hat</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2
+id="appendix-c-task-3-approximate-bayesian-computation-engine-r05_abc_engine.r">Appendix
+C: Task 3 Approximate Bayesian Computation Engine
+(<code>R/05_abc_engine.R</code>)</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 3: Approximate Bayesian Computation Engine (Rejection ABC)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; High-performance vectorized Rejection ABC simulation</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>run_rejection_abc <span class="ot">&lt;-</span> <span class="cf">function</span>(df, dominant_params, fixed_params, priors,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">n_sim =</span> <span class="dv">200000</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">tolerance_quantiles =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.02</span>, <span class="fl">0.01</span>, <span class="fl">0.005</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                              <span class="at">seed =</span> <span class="dv">42</span>) {</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seed)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df); x4 <span class="ot">&lt;-</span> df<span class="sc">$</span>x4; y <span class="ot">&lt;-</span> df<span class="sc">$</span>y</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fixed component subtraction</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  y_fixed <span class="ot">&lt;-</span> fixed_params<span class="sc">$</span>values[<span class="dv">1</span>] <span class="sc">*</span> (df<span class="sc">$</span>x1<span class="sc">^</span><span class="dv">3</span>) <span class="sc">+</span> fixed_params<span class="sc">$</span>values[<span class="dv">2</span>] <span class="sc">*</span> (df<span class="sc">$</span>x3<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  y_target <span class="ot">&lt;-</span> y <span class="sc">-</span> y_fixed</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Precompute sample sums for fast algebraic expansion</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  sum_y_target <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_target); sum_y_target_sq <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_target<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  sum_x4 <span class="ot">&lt;-</span> <span class="fu">sum</span>(x4); sum_x4_sq <span class="ot">&lt;-</span> <span class="fu">sum</span>(x4<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  sum_x4_y_target <span class="ot">&lt;-</span> <span class="fu">sum</span>(x4 <span class="sc">*</span> y_target)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sample uniform priors</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  sim_theta0 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_sim, <span class="at">min =</span> priors<span class="sc">$</span>Intercept<span class="sc">$</span>min, <span class="at">max =</span> priors<span class="sc">$</span>Intercept<span class="sc">$</span>max)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  sim_theta1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_sim, <span class="at">min =</span> priors<span class="sc">$</span>x4<span class="sc">$</span>min, <span class="at">max =</span> priors<span class="sc">$</span>x4<span class="sc">$</span>max)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Vectorized Residual Sum of Squares (RSS)</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  rss_vector <span class="ot">&lt;-</span> sum_y_target_sq <span class="sc">+</span> n <span class="sc">*</span> (sim_theta0<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> (sim_theta1<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> sum_x4_sq <span class="sc">-</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>                <span class="dv">2</span> <span class="sc">*</span> sim_theta0 <span class="sc">*</span> sum_y_target <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> sim_theta1 <span class="sc">*</span> sum_x4_y_target <span class="sc">+</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>                <span class="dv">2</span> <span class="sc">*</span> sim_theta0 <span class="sc">*</span> sim_theta1 <span class="sc">*</span> sum_x4</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  dist_rmse <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(rss_vector <span class="sc">/</span> n)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Multi-tolerance acceptance evaluation</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  tolerance_levels <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (q <span class="cf">in</span> tolerance_quantiles) {</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    thresh <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(dist_rmse, <span class="at">probs =</span> q))</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    acc_idx <span class="ot">&lt;-</span> <span class="fu">which</span>(dist_rmse <span class="sc">&lt;=</span> thresh)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    tolerance_levels[[<span class="fu">as.character</span>(q)]] <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">quantile =</span> q, <span class="at">threshold_rmse =</span> thresh,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">n_accepted =</span> <span class="fu">length</span>(acc_idx),</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">theta0_acc =</span> sim_theta0[acc_idx], <span class="at">theta1_acc =</span> sim_theta1[acc_idx]</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">n_sim =</span> n_sim, <span class="at">tolerance_levels =</span> tolerance_levels,</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>       <span class="at">primary_accepted =</span> tolerance_levels[[<span class="fu">as.character</span>(<span class="fu">min</span>(tolerance_quantiles))]])</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Non-parametric 95% Highest Posterior Density Interval (HPDI)</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>compute_hpdi <span class="ot">&lt;-</span> <span class="cf">function</span>(samples, <span class="at">prob =</span> <span class="fl">0.95</span>) {</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  sorted_s <span class="ot">&lt;-</span> <span class="fu">sort</span>(samples); n <span class="ot">&lt;-</span> <span class="fu">length</span>(sorted_s)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  n_in <span class="ot">&lt;-</span> <span class="fu">floor</span>(prob <span class="sc">*</span> n); n_out <span class="ot">&lt;-</span> n <span class="sc">-</span> n_in</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  widths <span class="ot">&lt;-</span> sorted_s[(n_in <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>n] <span class="sc">-</span> sorted_s[<span class="dv">1</span><span class="sc">:</span>n_out]</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  min_idx <span class="ot">&lt;-</span> <span class="fu">which.min</span>(widths)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">lower =</span> sorted_s[min_idx], <span class="at">upper =</span> sorted_s[min_idx <span class="sc">+</span> n_in])</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2
+id="appendix-d-publication-grade-table-rendering-engine-r07_table_renderer.r">Appendix
+D: Publication-Grade Table Rendering Engine
+(<code>R/07_table_renderer.R</code>)</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Appendix D: Publication-Grade APA 7 Table Image Rendering Engine</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(gridExtra)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(grid)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(gtable)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>render_apa_table_png <span class="ot">&lt;-</span> <span class="cf">function</span>(df, table_num, title, note, out_file,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">width_in =</span> <span class="fl">8.5</span>, <span class="at">font_size =</span> <span class="fl">9.5</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">col_align =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  df_chr <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">lapply</span>(df, as.character), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  n_rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df_chr); n_cols <span class="ot">&lt;-</span> <span class="fu">ncol</span>(df_chr)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(col_align)) {</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    col_align <span class="ot">&lt;-</span> <span class="fu">sapply</span>(df, <span class="cf">function</span>(col) <span class="cf">if</span> (<span class="fu">is.numeric</span>(col)) <span class="st">&quot;right&quot;</span> <span class="cf">else</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    col_align[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;left&quot;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  hjust_vec <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(col_align <span class="sc">==</span> <span class="st">&quot;right&quot;</span>, <span class="dv">1</span>, <span class="fu">ifelse</span>(col_align <span class="sc">==</span> <span class="st">&quot;center&quot;</span>, <span class="fl">0.5</span>, <span class="dv">0</span>))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  x_pos_vec <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(col_align <span class="sc">==</span> <span class="st">&quot;right&quot;</span>, <span class="fl">0.95</span>, <span class="fu">ifelse</span>(col_align <span class="sc">==</span> <span class="st">&quot;center&quot;</span>, <span class="fl">0.5</span>, <span class="fl">0.05</span>))</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  tt <span class="ot">&lt;-</span> <span class="fu">ttheme_default</span>(</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">base_size =</span> font_size, <span class="at">base_family =</span> <span class="st">&quot;sans&quot;</span>, <span class="at">padding =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="fl">4.5</span>, <span class="fl">5.0</span>), <span class="st">&quot;mm&quot;</span>),</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">core =</span> <span class="fu">list</span>(<span class="at">fg_params =</span> <span class="fu">list</span>(<span class="at">hjust =</span> <span class="fu">rep</span>(hjust_vec, <span class="at">each =</span> n_rows),</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">x =</span> <span class="fu">rep</span>(x_pos_vec, <span class="at">each =</span> n_rows),</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">fontsize =</span> font_size, <span class="at">col =</span> <span class="st">&quot;#1a1a1a&quot;</span>),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                <span class="at">bg_params =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;#ffffff&quot;</span>, <span class="st">&quot;#f8f9fa&quot;</span>))),</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">colhead =</span> <span class="fu">list</span>(<span class="at">fg_params =</span> <span class="fu">list</span>(<span class="at">hjust =</span> hjust_vec, <span class="at">x =</span> x_pos_vec,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">fontsize =</span> font_size <span class="sc">+</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;#111111&quot;</span>),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                   <span class="at">bg_params =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="st">&quot;#ffffff&quot;</span>))</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  tg <span class="ot">&lt;-</span> <span class="fu">tableGrob</span>(df_chr, <span class="at">rows =</span> <span class="cn">NULL</span>, <span class="at">theme =</span> tt)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  tg <span class="ot">&lt;-</span> <span class="fu">gtable_add_grob</span>(tg, <span class="at">grobs =</span> <span class="fu">segmentsGrob</span>(<span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">lwd =</span> <span class="fl">2.2</span>, <span class="at">col =</span> <span class="st">&quot;#111111&quot;</span>)), <span class="at">t =</span> <span class="dv">1</span>, <span class="at">l =</span> <span class="dv">1</span>, <span class="at">r =</span> n_cols)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  tg <span class="ot">&lt;-</span> <span class="fu">gtable_add_grob</span>(tg, <span class="at">grobs =</span> <span class="fu">segmentsGrob</span>(<span class="at">y0 =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;npc&quot;</span>), <span class="at">y1 =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;npc&quot;</span>), <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">lwd =</span> <span class="fl">1.0</span>, <span class="at">col =</span> <span class="st">&quot;#222222&quot;</span>)), <span class="at">t =</span> <span class="dv">1</span>, <span class="at">l =</span> <span class="dv">1</span>, <span class="at">r =</span> n_cols)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  tg <span class="ot">&lt;-</span> <span class="fu">gtable_add_grob</span>(tg, <span class="at">grobs =</span> <span class="fu">segmentsGrob</span>(<span class="at">y0 =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;npc&quot;</span>), <span class="at">y1 =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;npc&quot;</span>), <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">lwd =</span> <span class="fl">2.2</span>, <span class="at">col =</span> <span class="st">&quot;#111111&quot;</span>)), <span class="at">t =</span> <span class="fu">nrow</span>(tg), <span class="at">l =</span> <span class="dv">1</span>, <span class="at">r =</span> n_cols)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  title_grob1 <span class="ot">&lt;-</span> <span class="fu">textGrob</span>(table_num, <span class="at">x =</span> <span class="fl">0.015</span>, <span class="at">just =</span> <span class="st">&quot;left&quot;</span>, <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">fontsize =</span> font_size <span class="sc">+</span> <span class="fl">2.5</span>, <span class="at">col =</span> <span class="st">&quot;#111111&quot;</span>))</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  title_grob2 <span class="ot">&lt;-</span> <span class="fu">textGrob</span>(title, <span class="at">x =</span> <span class="fl">0.015</span>, <span class="at">just =</span> <span class="st">&quot;left&quot;</span>, <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">fontsize =</span> font_size <span class="sc">+</span> <span class="fl">1.2</span>, <span class="at">col =</span> <span class="st">&quot;#222222&quot;</span>))</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  wrapped_note <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">strwrap</span>(note, <span class="at">width =</span> <span class="fu">floor</span>(width_in <span class="sc">*</span> <span class="fl">13.5</span>)), <span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  note_lines <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">strsplit</span>(wrapped_note, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)[[<span class="dv">1</span>]])</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  note_grob <span class="ot">&lt;-</span> <span class="fu">textGrob</span>(wrapped_note, <span class="at">x =</span> <span class="fl">0.015</span>, <span class="at">just =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;top&quot;</span>), <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fontsize =</span> font_size <span class="sc">-</span> <span class="fl">1.0</span>, <span class="at">col =</span> <span class="st">&quot;#333333&quot;</span>))</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  table_height_in <span class="ot">&lt;-</span> (n_rows <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fl">0.28</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  note_height_in <span class="ot">&lt;-</span> (note_lines <span class="sc">*</span> <span class="fl">0.20</span>) <span class="sc">+</span> <span class="fl">0.15</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  total_height_in <span class="ot">&lt;-</span> <span class="fl">0.65</span> <span class="sc">+</span> table_height_in <span class="sc">+</span> note_height_in <span class="sc">+</span> <span class="fl">0.25</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">png</span>(out_file, <span class="at">width =</span> width_in <span class="sc">*</span> <span class="dv">300</span>, <span class="at">height =</span> total_height_in <span class="sc">*</span> <span class="dv">300</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grid.newpage</span>()</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pushViewport</span>(<span class="fu">viewport</span>(<span class="at">layout =</span> <span class="fu">grid.layout</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="at">heights =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="fl">0.28</span>, <span class="fl">0.28</span>, table_height_in, <span class="fl">0.08</span>, note_height_in), <span class="st">&quot;inches&quot;</span>))))</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pushViewport</span>(<span class="fu">viewport</span>(<span class="at">layout.pos.row =</span> <span class="dv">1</span>, <span class="at">layout.pos.col =</span> <span class="dv">1</span>)); <span class="fu">grid.draw</span>(title_grob1); <span class="fu">popViewport</span>()</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pushViewport</span>(<span class="fu">viewport</span>(<span class="at">layout.pos.row =</span> <span class="dv">2</span>, <span class="at">layout.pos.col =</span> <span class="dv">1</span>)); <span class="fu">grid.draw</span>(title_grob2); <span class="fu">popViewport</span>()</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pushViewport</span>(<span class="fu">viewport</span>(<span class="at">layout.pos.row =</span> <span class="dv">3</span>, <span class="at">layout.pos.col =</span> <span class="dv">1</span>)); <span class="fu">grid.draw</span>(tg); <span class="fu">popViewport</span>()</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pushViewport</span>(<span class="fu">viewport</span>(<span class="at">layout.pos.row =</span> <span class="dv">5</span>, <span class="at">layout.pos.col =</span> <span class="dv">1</span>)); <span class="fu">grid.draw</span>(note_grob); <span class="fu">popViewport</span>()</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dev.off</span>()</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</body>
+</html>

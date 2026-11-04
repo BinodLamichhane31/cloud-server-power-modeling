@@ -1,0 +1,7 @@
+"variable","raw_column","source_file","role","description"
+"time","time_seconds","time.csv","index","Sampling time (s)"
+"x1","cpu_utilization","X.csv","input","CPU utilization"
+"x2","memory_usage","X.csv","input","Memory usage"
+"x3","disk_io","X.csv","input","Disk I/O"
+"x4","network_traffic","X.csv","input","Network traffic"
+"y","power_consumption","y.csv","output","Total power consumption"

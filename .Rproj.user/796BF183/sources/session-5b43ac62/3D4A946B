@@ -1,0 +1,24 @@
+{
+    "id": "3D4A946B",
+    "path": "~/Documents/cloud-server-power-modeling/R/03_diagnostics_metrics.R",
+    "project_path": "R/03_diagnostics_metrics.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1793772858647.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1791964075,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1791964075,
+    "read_only": false,
+    "read_only_alternatives": []
+}
